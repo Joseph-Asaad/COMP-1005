@@ -18,7 +18,7 @@ class Transaction(hasUUID, AbsRepr):
         self.set_type(type)
         self.set_amount(amount)
         self.set_description(description)
-        self.__status = self.TransactionStatuses.PENDING
+        self.set_status(self.TransactionStatuses.PENDING)
 
     def process(self):
         match self.__status:

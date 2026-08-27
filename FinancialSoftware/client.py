@@ -108,8 +108,7 @@ class Client(hasUUID):
     def remove_account (self, acc) :
         self.__accounts.remove(acc)
     def add_account (self, acc) : 
-        if not isinstance(acc, Account) : 
-            return
+        if not isinstance(acc, Account) : return
         self.__accounts.append(acc)
 
     def __str__(self):
