@@ -14,9 +14,10 @@ class Transaction(hasUUID, AbsRepr):
         CANCELLED = "Cancelled"
 
     def __init__(self, type, amount, description):
-        self.__type = type
-        self.__amount = amount
-        self.__description = description
+        super().__init__(self)
+        self.set_type(type)
+        self.set_amount(amount)
+        self.set_description(description)
         self.__status = self.TransactionStatuses.PENDING
 
     def process(self):
@@ -50,6 +51,24 @@ class Transaction(hasUUID, AbsRepr):
     def get_type (self) : 
         return self.__type
     def set_type (self, new) : 
-        if not isinstance(type, self.TransactionTypes) : return
+        if not isinstance(new, self.TransactionTypes) : return
         self.__type = new
+
+    def get_amount (self) : 
+        return self.__amount
+    def set_amount (self, new) : 
+        if (not isinstance(new, int)) or new < 0 : return
+        self.__amount = new
+
+    def get_description (self) : 
+        return self.__amount
+    def set_description (self, new) : 
+        if not isinstance(new, str) : raise(ValueError)
+        self.__description = new
+
+    def get_status (self) : 
+        return self.__status
+    def set_status (self, new) : 
+        if (not isinstance(new, self.TransactionStatuses)) : return
+        self.__status = new
 
