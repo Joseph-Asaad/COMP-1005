@@ -22,6 +22,7 @@ class Client(hasUUID):
             self.add_account(acc)
             
         self.set_preferred_branch(preferred_branch)
+        if preferred_contact_method == None : preferred_contact_method = self.ContactMethods.PHONE
         self.set_preferred_contact_method(preferred_contact_method)
 
     class Titles(Enum):
@@ -99,7 +100,7 @@ class Client(hasUUID):
         self.__preferred_branch = new
 
     def get_preferred_contact_method (self) : 
-        return self.__preferred_contact_method
+        return self.__preferred_contact_method.value
     def set_preferred_contact_method (self, new) : 
         if (not isinstance(new, self.ContactMethods)) : return
         self.__preferred_contact_method = new
@@ -114,4 +115,4 @@ class Client(hasUUID):
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
                 ", name=\"" + self.printName(self.NameFormats.FULL) + "\""
-                ", preferred_contact_method=" + self.preferred_contact_method.value)
+                ", preferred_contact_method=" + self.get_preferred_contact_method())

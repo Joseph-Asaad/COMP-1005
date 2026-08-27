@@ -12,7 +12,6 @@ class hasUUID :
 
   @classmethod
   def __init__ (cls, self) : 
-    print(self.__class__, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     self.set_ID(uuid.uuid4())
     cls.UUID_objects.append(self)
 

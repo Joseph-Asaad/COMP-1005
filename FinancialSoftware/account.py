@@ -41,8 +41,8 @@ class Account(hasUUID, AbsRepr):
 
 
     def __str__(self):
-        return ("ID_number=" + str(self.ID_number) +
+        return ("ID_number=" + str(self.get_ID()) +
                 ", name=" + self.name +
-                ", type=" + self.type.value +
-                ", balance=" + str(self.balance)
+                ", type=" + self.__type.value +
+                ", balance=" + str(self.__balance)
                 )
