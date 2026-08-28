@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>560</x><y>394</y><w>147</w><h>112</h></coordinates><panel_attributes>Transaction
+<diagram program="umletino" version="15.1"><zoom_level>14</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1120</x><y>574</y><w>294</w><h>224</h></coordinates><panel_attributes>Transaction
 --
 +ID_number: UUID-4
 
@@ -8,7 +8,7 @@
 --
 Responsibilities
 -- Resp1
-*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>266</x><y>457</y><w>217</w><h>140</h></coordinates><panel_attributes>Client
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>532</x><y>700</y><w>434</w><h>280</h></coordinates><panel_attributes>Client
 --
 + ID_number:  UUID-4
 + names : String[]
@@ -21,7 +21,7 @@ Responsibilities
 - preferred_branch : Branch
 + preferred_contact_method : enum ContactMethods
 --
-printName (format : enum NameFormats) : String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>401</y><w>147</w><h>133</h></coordinates><panel_attributes>Branch
+printName (format : enum NameFormats) : String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>588</y><w>294</w><h>266</h></coordinates><panel_attributes>Branch
 --
 + ID_number :  UUID-4
 + branch_number : int
@@ -31,7 +31,7 @@ printName (format : enum NameFormats) : String</panel_attributes><additional_att
 + name : String
 --
 + open ()
-+ close ()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>798</x><y>436</y><w>210</w><h>140</h></coordinates><panel_attributes>Account
++ close ()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1596</x><y>658</y><w>420</w><h>280</h></coordinates><panel_attributes>Account
 --
 + ID-number :  UUID-4
 + name : String
@@ -44,15 +44,17 @@ printName (format : enum NameFormats) : String</panel_attributes><additional_att
 + increase_balance(amount : int)
 + decrease_balance (amount : int)
  + promote_member (member : client, actor : client)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>700</x><y>394</y><w>112</w><h>119</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10;50;150;140;150</additional_attributes></element><element><id>Relation</id><coordinates><x>476</x><y>506</y><w>336</w><h>49</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1400</x><y>574</y><w>224</w><h>252</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
-m2=1
-</panel_attributes><additional_attributes>10;40;380;40;380;10;460;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>462</x><y>107</y><w>154</w><h>77</h></coordinates><panel_attributes>hasUUID
+m2=1</panel_attributes><additional_attributes>10;10;50;10;50;150;140;150</additional_attributes></element><element><id>Relation</id><coordinates><x>952</x><y>798</y><w>672</w><h>98</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*
+</panel_attributes><additional_attributes>10;40;380;40;380;10;460;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>924</x><y>0</y><w>308</w><h>154</h></coordinates><panel_attributes>hasUUID
 --
 __-UUID-objects : [hasUUID]__
 
 + getUUID () : uuid4
 + setUUID (uuid4)
-+get_from_UUID (uuid4) : hasUUID</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>84</x><y>534</y><w>196</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;-
++get_from_UUID (uuid4) : hasUUID</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>168</x><y>840</y><w>392</w><h>140</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..1
-m2=*</panel_attributes><additional_attributes>10;10;10;60;260;60</additional_attributes></element><element><id>Relation</id><coordinates><x>539</x><y>177</y><w>140</w><h>231</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;160;180;160;180;310</additional_attributes></element><element><id>Relation</id><coordinates><x>574</x><y>177</y><w>357</w><h>273</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;100;490;100;490;370</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>177</y><w>161</w><h>287</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>210;10;210;160;10;160;10;390</additional_attributes></element><element><id>Relation</id><coordinates><x>105</x><y>177</y><w>392</w><h>238</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>540;10;540;60;10;60;10;320</additional_attributes></element></diagram>
+m2=*</panel_attributes><additional_attributes>10;10;10;70;260;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1078</x><y>140</y><w>280</w><h>462</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;160;180;160;180;310</additional_attributes></element><element><id>Relation</id><coordinates><x>1148</x><y>140</y><w>714</w><h>546</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;490;100;490;370</additional_attributes></element><element><id>Relation</id><coordinates><x>742</x><y>140</y><w>322</w><h>588</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;160;10;160;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>140</y><w>784</w><h>476</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>540;10;540;60;10;60;10;320</additional_attributes></element></diagram>
