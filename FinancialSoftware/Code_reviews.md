@@ -5,3 +5,7 @@
  - More setters, getters.
  - Validate constructor data
  - My UML was totally wrong
+ # Code review 3
+ - need comments
+ - need docstrings
+ - need linting
