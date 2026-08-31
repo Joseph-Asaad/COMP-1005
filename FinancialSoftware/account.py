@@ -4,18 +4,21 @@ from hasUUID import hasUUID
 class Account(hasUUID):
     from enum import Enum
 
+    # Enumerate possible account types, for type checking.
     class AccountTypes(Enum):
         SAVINGS = "savings"
         CHECKING = "checking"
         CREDIT = "credit"
 
     def __init__(self, type, balance, owner, interest_rate, name=None):
-        hasUUID.__init__(self)
+        hasUUID.__init__(self)  # Assign an ID to this object.
+        # Default setters.
         self.set_type(type)
         self.__balance = balance
         self.set_owner(owner)
         self.set_interest_rate(interest_rate)
 
+        # Accounts get a name no matter what, either "New Account" or (eg) "John's Account" if no name is provided.
         if name == None:
             if not owner == None:
                 self.set_name(owner.printName(
@@ -25,6 +28,7 @@ class Account(hasUUID):
 
         owner.add_account(self)
 
+    # Getter, setter for balance — using increase and decrease instead of just a setter.
     def increase_balance(self, amount):
         if amount < 0:
             return
@@ -41,6 +45,7 @@ class Account(hasUUID):
     def get_balance(self):
         return self.__balance
 
+    # Getter, setter for account name
     def get_name(self):
         return self.__name
 
@@ -49,6 +54,7 @@ class Account(hasUUID):
             return
         self.__name = new
 
+    # Getter, setter for owner.
     def get_owner(self):
         return self.__owner
 
@@ -58,6 +64,7 @@ class Account(hasUUID):
             return
         self.__owner = new
 
+    # Getter, setter for type.
     def get_type(self):
         return self.__type
 
@@ -66,6 +73,7 @@ class Account(hasUUID):
             return
         self.__type = new
 
+    # Getter, setter for interest rate.
     def get_interest_rate(self):
         return self.__interest_rate
 
@@ -74,6 +82,7 @@ class Account(hasUUID):
             return
         self.__interest_rate = new
 
+    # Override built-in functions.
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
                 ", name=" + self.__name +

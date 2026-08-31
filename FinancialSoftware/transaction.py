@@ -1,53 +1,56 @@
-from hasUUID import hasUUID
+from hasUUID import hasUUID  # So transactions get UUIDs.
 
 
 class Transaction(hasUUID):
+    # To allow for Enumerating because there's no way I'm type-checking by matching strings.
     from enum import Enum
 
+    # This could be a boolean, but this is more expandable and it's not like I'm going to conserve memory.
     class TransactionTypes(Enum):
         DEPOSIT = "Deposit"
         WITHDRAWAL = "Withdrawal"
 
-    class TransactionStatuses(Enum):
+    class TransactionStatuses(Enum):  # Do not change.
         PENDING = "Pending"
         PROCESSED = "Processed"
         CANCELLED = "Cancelled"
 
     def __init__(self, type, amount, description):
-        super().__init__(self)
+        super().__init__(self)  # Assign an ID to this object.
+        # Normal setters.
         self.set_type(type)
         self.set_amount(amount)
         self.set_description(description)
+        # Transactions always start pending.
         self.__status = self.TransactionStatuses.PENDING
 
     def process(self):
         match self.__status:
+            # Pending transactions can be processed.
             case self.TransactionStatuses.PENDING:
                 self.__status = self.TransactionStatuses.PROCESSED
                 print("Transaction successfully processed")
+            # Processed transactions don't need to be processed.
             case self.TransactionStatuses.PROCESSED:
                 print("Error: Transaction is already processed.")
+            # Cancelled transactions cannot be proceessed.
             case self.TransactionStatuses.CANCELLED:
                 print("Error: Transaction has been cancelled.")
 
     def cancel(self):
         match self.__status:
+            # Pending transactions can be processed.
             case self.TransactionStatuses.PENDING:
                 self.__status = self.TransactionStatuses.CANCELLED
                 print("Transaction successfully cancelled")
+            # Processed transactions cannot be processed.
             case self.TransactionStatuses.PROCESSED:
                 print("Error: Transaction is already processed.")
+            # Cancelled transactions don't need to be cancelled.
             case self.TransactionStatuses.CANCELLED:
                 print("Error: Transaction has already been cancelled.")
 
-    def __str__(self):
-        return ("ID_number=" + str(self.get_ID()) +
-                ", type=" + self.__type.value +
-                ", amount=" + str(self.__amount) +
-                ", description=\"" + self.__description + "\"" +
-                ", status=" + self.__status.value
-                )
-
+    # Getter, setter for type.
     def get_type(self):
         return self.__type
 
@@ -56,6 +59,7 @@ class Transaction(hasUUID):
             return
         self.__type = new
 
+    # Getter, setter for amount.
     def get_amount(self):
         return self.__amount
 
@@ -64,6 +68,7 @@ class Transaction(hasUUID):
             return
         self.__amount = new
 
+    # Getter, setter for description.
     def get_description(self):
         return self.__amount
 
@@ -72,6 +77,7 @@ class Transaction(hasUUID):
             raise (ValueError)
         self.__description = new
 
+    # Getter, setter for status.
     def get_status(self):
         return self.__status
 
@@ -79,3 +85,20 @@ class Transaction(hasUUID):
         if (not isinstance(new, self.TransactionStatuses)):
             return
         self.__status = new
+
+    # Override default functions
+    def __str__(self):
+        return ("ID_number=" + str(self.get_ID()) +
+                ", type=" + self.__type.value +
+                ", amount=" + str(self.__amount) +
+                ", description=\"" + self.__description + "\"" +
+                ", status=" + self.__status.value
+                )
+
+    def __repr__(self):
+        return ("ID_number=" + str(self.get_ID()) +
+                ", type=" + self.__type.value +
+                ", amount=" + str(self.__amount) +
+                ", description=\"" + self.__description + "\"" +
+                ", status=" + self.__status.value
+                )

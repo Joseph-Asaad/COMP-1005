@@ -1,30 +1,34 @@
-from hasUUID import hasUUID
-import datetime
-from phonenumbers import phonenumber
-from branch import Branch
+from hasUUID import hasUUID  # So clients get UUIDS.
+import datetime  # For Date of Birth.
+import phonenumbers as phonenumbers  # For phone numbers.
 
 
 class Client(hasUUID):
     from enum import Enum
+    """
+    """
 
     def __init__(self, names, title, dob, phone, email, address, accounts, preferred_branch, preferred_contact_method=None):
-        hasUUID.__init__(self)
+        hasUUID.__init__(self)  # Assign an ID to this object.
+        # Default setters for attributes.
         self.set_name(names)
         self.set_title(title)
         self.set_dob(dob)
         self.set_phone(phone)
         self.set_email(email)
         self.set_address(address)
+        self.set_preferred_branch(preferred_branch)
 
-        self.__accounts = []
+        self.__accounts = []  # Allow accounts to be added on initialisation.
         for acc in accounts:
             self.add_account(acc)
 
-        self.set_preferred_branch(preferred_branch)
-
+        # Default contact method is phone.
         self.set_preferred_contact_method(self.ContactMethods.PHONE)
+        # In case of the argument being left blank, the set_preferred_contact_method() method will reject a "None" type and do nothing.
         self.set_preferred_contact_method(preferred_contact_method)
 
+    # Enumerates titles. Yes it's hard-coded, but it's easy to edit and a single source-of-truth.
     class Titles(Enum):
         MR = "Mr."
         MS = "Ms."
@@ -33,37 +37,39 @@ class Client(hasUUID):
         SIR = "Sir"
         COLONEL = "Col."
 
-    class ContactMethods(Enum):
+    class ContactMethods(Enum):  # Ditto for contact methods.
         EMAIL = "email"
         PHONE = "phone"
 
+    # Double Ditto for name formats. This one shouldn't be edited without editing printName() to support new methods.
     class NameFormats(Enum):
         DEFAULT = 0
         FULL = 1
         FORMAL = 2
         CASUAL = 3
 
-    def printName(self, format):
+    def printName(self, format):  # Prints names.
         match format:
-            case self.NameFormats.DEFAULT:
+            case self.NameFormats.DEFAULT:  # E.g. John Smith.
                 return self.__names[0] + " " + self.__names[-1]
-            case self.NameFormats.FULL:
+            case self.NameFormats.FULL:  # E.g. John Henry Smith.
                 return ' '.join(self.__names)
-            case self.NameFormats.FORMAL:
+            case self.NameFormats.FORMAL:  # E.g. Mr. Smith.
                 return self.__title.value + " " + self.__names[-1]
-            case self.NameFormats.CASUAL:
+            case self.NameFormats.CASUAL:  # E.g. John
                 return self.__names[0]
 
-    def set_name(self, new):
+    def set_name(self, new):  # Normal setter for names.
         if not (isinstance(new, list) and all(isinstance(item, str) for item in new)):
             return
         self.__names = new
 
-    def set_title(self, new):
+    def set_title(self, new):  # Normal setter for title.
         if (not isinstance(new, Client.Titles)):
             return
         self.__title = new
 
+    # Getter, setter for date of birth.
     def get_dob(self):
         return self.__dob
 
@@ -72,22 +78,17 @@ class Client(hasUUID):
             return
         self.__dob = new
 
-    def get_dob(self):
-        return self.__dob
-
-    def set_dob(self, new):
-        if (not isinstance(new, datetime.date)):
-            return
-        self.__dob = new
-
+    # Getter, setter for phone number.
     def get_phone(self):
         return self.__phone
 
     def set_phone(self, new):
-        if (not isinstance(new, phonenumber.PhoneNumber)):
-            return
+        if (not isinstance(new, phonenumbers.PhoneNumber)):
+            # Allow un-parsed inputs.
+            self.set_phone(phonenumbers.parse("+1 {}".format(new)))
         self.__phone = new
 
+    # Getter, setter for email.
     def get_email(self):
         return self.__email
 
@@ -96,6 +97,7 @@ class Client(hasUUID):
             return
         self.__email = new
 
+    # Getter, setter for address.
     def get_address(self):
         return self.__address
 
@@ -104,25 +106,26 @@ class Client(hasUUID):
             return
         self.__address = new
 
+    # Getter, setter for preferred branch.
     def get_preferred_branch(self):
         return self.__preferred_branch
 
     def set_preferred_branch(self, new):
+        from branch import Branch  # Imported here to avoid circular reference.
         if (not isinstance(new, Branch)):
             return
         self.__preferred_branch = new
 
+    # Getter, setter for preferred contact method.
     def get_preferred_contact_method(self):
         return self.__preferred_contact_method.value
 
     def set_preferred_contact_method(self, new):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(new)
-        print(type(new))
         if (not isinstance(new, self.ContactMethods)):
             return
         self.__preferred_contact_method = new
 
+    # Add and remove accounts from this user.
     def remove_account(self, acc):
         self.__accounts.remove(acc)
 
@@ -133,6 +136,7 @@ class Client(hasUUID):
             return
         self.__accounts.append(acc)
 
+    # Override built-in functions.
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
                 ", name=\"" + self.printName(self.NameFormats.FULL) + "\""
