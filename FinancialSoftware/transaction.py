@@ -18,7 +18,7 @@ class Transaction(hasUUID):
         self.set_type(type)
         self.set_amount(amount)
         self.set_description(description)
-        self.set_status(self.TransactionStatuses.PENDING)
+        self.__status = self.TransactionStatuses.PENDING
 
     def process(self):
         match self.__status:
@@ -41,7 +41,7 @@ class Transaction(hasUUID):
                 print("Error: Transaction has already been cancelled.")
 
     def __str__(self):
-        return ("ID_number=" + str(self.get_ID()) +
+        return ("ID_number=" + str(self.ID_number) +
                 ", type=" + self.__type.value +
                 ", amount=" + str(self.__amount) +
                 ", description=\"" + self.__description + "\"" +

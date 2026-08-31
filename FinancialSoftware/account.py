@@ -28,7 +28,6 @@ class Account(hasUUID):
             return
         self.__balance = self.__balance + amount
         return 1
-
     def decrease_balance(self, amount):
         if self.__balance < amount:
             print("insufficient funds in account ", self.get_ID())
@@ -73,10 +72,10 @@ class Account(hasUUID):
         self.__interest_rate = new
 
     def __str__(self):
-        return ("ID_number=" + str(self.get_ID()) +
+        return ("ID_number=" + str(self.ID_number) +
                 ", name=" + self.name +
-                ", type=" + self.__type.value +
-                ", balance=" + str(self.__balance)
+                ", type=" + self.type.value +
+                ", balance=" + str(self.balance)
                 )
 
     def __repr__(self):

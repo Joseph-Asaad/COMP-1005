@@ -26,8 +26,7 @@ clients.append(Client(["John", "Citizen"],
                       "john.citizen2000@gmail.com",
                       "10 Downing St., London, England",
                       [],
-                      branches[0],
-                      Client.ContactMethods.EMAIL
+                      branches[0]
                       ))
 
 clients.append(Client(["Leonardo", "da Vinci"],
@@ -38,7 +37,7 @@ clients.append(Client(["Leonardo", "da Vinci"],
                       "Amboise, France",
                       [],
                       branches[1],
-                      Client.ContactMethods.PHONE
+                      []
                       ))
 
 clients.append(Client(["Thomas", "Edward", "Lawrence"],
@@ -49,7 +48,7 @@ clients.append(Client(["Thomas", "Edward", "Lawrence"],
                       "Bovington Camp, Dorset, England",
                       [],
                       branches[2],
-                      Client.ContactMethods.PHONE
+                      []
                       ))
 
 
