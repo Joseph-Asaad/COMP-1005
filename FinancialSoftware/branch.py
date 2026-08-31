@@ -4,6 +4,43 @@ import phonenumbers as phonenumbers
 
 
 class Branch(hasUUID):
+    """
+    Class that represents a Branch
+    Attributes
+    ---------
+    Methods
+    -------
+    open() : void
+        opens the branch
+
+    close() : void
+        closes the branch
+
+    get_branch_number() : int
+        returns the branch number
+
+    set_branch_number( branch_number : int) : void
+        sets the branch number
+
+    get_address () : str
+        returns the address
+
+    set_address (address : str) : void
+        sets the address
+
+    get_phone_number() : PhoneNumber
+        returns the phone number
+
+    set_phone_number(phone_number : PhoneNumber,str,int) : void
+        sets the phone number. If passed an unparsed input, parses it.
+
+    get_name() : str
+        returns branch name.
+
+    set_name(name : str) : void
+        sets the branch name.
+    """
+
     def __init__(self, branch_number, address, phone_number, is_open=False, name=None):
         hasUUID.__init__(self)  # Assign an ID to this object.
         # Default setters.
@@ -27,6 +64,9 @@ class Branch(hasUUID):
     def close(self):
         self.__is_open = False
         print("branch", self.__branch_number, "is now closed")
+
+    def is_open(self):
+        return self.__is_open
 
     # Getter, setter for branch number (note: number is user-facing, not internal ID).
     def get_branch_number(self):

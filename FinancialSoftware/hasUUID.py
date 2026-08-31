@@ -2,6 +2,18 @@ import uuid as uuid  # UUID library
 
 
 class hasUUID:
+    """
+    An abstract class that registers a constant, unique UUID for objects of derived classes; allows searching for objects by UUID.
+
+    Methods
+    -------
+    get_ID : uuid
+        returns the object's UUID.
+    set_ID(uuid) : void
+        allows for setting of a uuid if the object does not already have one.
+    static get_from_UUID(uuid) : hasUUID
+        returns object which has supplied UUID.
+    """
 
     UUID_objects = []  # Central registry of everything with a UUID.
 

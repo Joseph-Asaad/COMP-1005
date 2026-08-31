@@ -6,6 +6,53 @@ import phonenumbers as phonenumbers  # For phone numbers.
 class Client(hasUUID):
     from enum import Enum
     """
+    Methods
+    -------
+    print_name(format : NameFormats) : str
+        returns owner's name in specified format.
+    
+    set_name(name : str[]) : void
+        sets name to provided name.
+
+    set_title(title : Titles(Enum)) : void
+        sets title to provided title : Mr, Ms, Mrs, Dr, Sir, Col.
+
+    get_dob() : datetime.date
+        returns date of birth.
+
+    set_dob(dob : datetime.date) : void
+        sets date of birth.
+
+    get_phone() : PhoneNumber
+        returns phone number.
+
+    set_phone (phone : PhoneNumber) : void
+        sets phone number.
+
+    get_email() : str
+        returns client's email address.
+
+    set_email(email : str) : void
+        sets client's email address.
+    
+    get_address() : str
+        returns client's address.
+    
+    set_address(address : str) : void
+        sets client's address.
+    
+    get_preferred_branch() : Branch
+        gets client's preferred branch.
+    
+    set_preferred_branch(branch : Branch) : void
+        sets client's preferred branch.
+    
+    get_preferred_contact_method() : ContactMethods
+        gets client's preferred contact method.
+    
+    set_preferred_contact_method(contact_method : ContactMethods) : void
+        sets client's preferred contact method.
+    
     """
 
     def __init__(self, names, title, dob, phone, email, address, accounts, preferred_branch, preferred_contact_method=None):

@@ -2,6 +2,39 @@ from hasUUID import hasUUID  # So transactions get UUIDs.
 
 
 class Transaction(hasUUID):
+    """
+    Methods
+    -------
+    process() : void
+        processes pending transactions, otherwise errors.
+
+    cancel() : void
+        cancels pending transactions, otherwise errors.
+
+    get_type() : TransactionTypes
+        returns transaction type.
+
+    set_type(type : TransactionTypes) : void
+        sets transaction type.
+
+    get_amount() : float
+        returns amount.
+
+    set_amount(amount : float) : void
+        sets amount.
+
+    get_description() : str
+        returns description.
+
+    set_description(description : str) : void
+        sets description.
+
+    get_status() : TransactionStatuses
+        returns status.
+
+    set_status(status : TransactionStatuses) void
+        sets status.
+    """
     # To allow for Enumerating because there's no way I'm type-checking by matching strings.
     from enum import Enum
 

@@ -3,7 +3,48 @@ from hasUUID import hasUUID
 
 class Account(hasUUID):
     from enum import Enum
+    """
+    Class that represesnts an account.
 
+    Attributes
+    ----------
+    balance : float
+        Account Balance
+    
+    Methods
+    -------
+        increase_balance(amount) : void
+            increases balance by specified amount.
+        
+        decrease_balance(amount) : void
+            decreases balance by specified amount. Errors if overdraft is attempted.
+        
+        get_balanced() : float
+            returns account balance.
+        
+        get_name() : str
+            returns account name.
+        
+        set_name(name : str) : void
+            sets account name to supplied name.
+        
+        get_owner() : Client
+            returns account owner.
+        
+        set_owner(Client) : void 
+            sets account owner. Removes self from old owner's account list, adds self to new owner's account list.
+
+        get_type() : AccountTypes
+            returns account type.
+        
+        set_type(type : Account) : void
+            sets account type, ignores non-Account objects.
+
+        get_interest_rate() : float
+            returns interest rate
+        set_interest_rate(interest_rate : float) : void
+            sets new interest rate, bounded between 0, 100%.
+    """
     # Enumerate possible account types, for type checking.
     class AccountTypes(Enum):
         SAVINGS = "savings"
@@ -62,7 +103,10 @@ class Account(hasUUID):
         from client import Client  # Imported here to avoid circular reference.
         if not type(new) == Client:
             return
+        if hasattr(self, '__owner'):
+            self.__owner.remove_account(self)
         self.__owner = new
+        self.__owner.add_account(self)
 
     # Getter, setter for type.
     def get_type(self):
