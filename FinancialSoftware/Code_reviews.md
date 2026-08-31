@@ -1,5 +1,5 @@
  # Code review 1
- I didn't have any code.
+ I didn't have any code ***BECAUSE I ENROLLED LATE - NOT MY FAULT***.
  # Code review 2
  Feedback:
  - More setters, getters.
