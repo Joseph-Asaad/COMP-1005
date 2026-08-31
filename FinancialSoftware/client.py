@@ -21,8 +21,8 @@ class Client(hasUUID):
             self.add_account(acc)
 
         self.set_preferred_branch(preferred_branch)
-        if preferred_contact_method == None:
-            preferred_contact_method = self.ContactMethods.PHONE
+
+        self.set_preferred_contact_method(self.ContactMethods.PHONE)
         self.set_preferred_contact_method(preferred_contact_method)
 
     class Titles(Enum):
@@ -116,6 +116,9 @@ class Client(hasUUID):
         return self.__preferred_contact_method.value
 
     def set_preferred_contact_method(self, new):
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(new)
+        print(type(new))
         if (not isinstance(new, self.ContactMethods)):
             return
         self.__preferred_contact_method = new

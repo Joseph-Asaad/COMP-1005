@@ -41,7 +41,7 @@ class Transaction(hasUUID):
                 print("Error: Transaction has already been cancelled.")
 
     def __str__(self):
-        return ("ID_number=" + str(self.ID_number) +
+        return ("ID_number=" + str(self.get_ID()) +
                 ", type=" + self.__type.value +
                 ", amount=" + str(self.__amount) +
                 ", description=\"" + self.__description + "\"" +

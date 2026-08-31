@@ -11,15 +11,17 @@ class Account(hasUUID):
 
     def __init__(self, type, balance, owner, interest_rate, name=None):
         hasUUID.__init__(self)
-        self.set_name(name)
         self.set_type(type)
         self.__balance = balance
         self.set_owner(owner)
         self.set_interest_rate(interest_rate)
 
-        if name == None and not owner == None:
-            self.name = owner.printName(
-                owner.__class__.NameFormats.CASUAL) + "\'s Account"
+        if name == None:
+            if not owner == None:
+                self.set_name(owner.printName(
+                    owner.__class__.NameFormats.CASUAL) + "\'s Account")
+            else:
+                self.set_name("New Account")
 
         owner.add_account(self)
 
@@ -28,6 +30,7 @@ class Account(hasUUID):
             return
         self.__balance = self.__balance + amount
         return 1
+
     def decrease_balance(self, amount):
         if self.__balance < amount:
             print("insufficient funds in account ", self.get_ID())
@@ -72,15 +75,15 @@ class Account(hasUUID):
         self.__interest_rate = new
 
     def __str__(self):
-        return ("ID_number=" + str(self.ID_number) +
-                ", name=" + self.name +
-                ", type=" + self.type.value +
-                ", balance=" + str(self.balance)
+        return ("ID_number=" + str(self.get_ID()) +
+                ", name=" + self.__name +
+                ", type=" + self.__type.value +
+                ", balance=" + str(self.__balance)
                 )
 
     def __repr__(self):
         return ("ID_number=" + str(self.get_ID()) +
-                ", name=" + self.name +
+                ", name=" + self.__name +
                 ", owner=" + str(self.get_owner()) +
                 ", type=" + self.__type.value +
                 ", balance=" + str(self.__balance)
