@@ -7,7 +7,7 @@ class Resource:
         adds/subtracts from the selected resource.
     get_resource (resource : ResourceType, count : int) : int
         returns the count of the selected resource.
-    """
+    """  # TODO : update
     from enum import Enum
 
     class ResourceTypes(Enum):
@@ -40,9 +40,11 @@ class Resource:
             exec(f"{self.__class__.__name__}.{name} = property({self.__class__.__name__}.{name}_getter, None)",  # create a property from the getter
                  globals(), namespace)
 
-    def add_resource(self, counts: int[5]):
+    def add_resource(self, counts: int[5]):  # add_resource([])
         for i in counts:
-            self.__resources[i] += counts[i]
+            self.__resources[i] += counts[i]  # TODO: validate > 0
+
+    # TODO: subtract_resources()
 
     def get_resource(self, resource):
         return self.__resources[resource.value]

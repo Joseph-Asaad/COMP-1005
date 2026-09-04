@@ -24,9 +24,14 @@ class Undead:
     def get_power(self):
         return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER)
 
-    def increase_level(self, level_increase):
+    def increase_level(self):
+        if self.__level > self.MAX_LEVEL:
+            return False
         self.__level == min(
-            max(self.MIN_LEVEL, self.__level + level_increase, self.MAX_LEVEL))
+            # TODO: remove redundant check
+            max(self.MIN_LEVEL, self.__level + 1, self.MAX_LEVEL))
+        print(self)
+        return True
 
     power = property(get_power, None)
 
