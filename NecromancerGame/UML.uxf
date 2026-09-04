@@ -1,0 +1,11 @@
+<diagram program="umletino" version="15.1"><zoom_level>12</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>84</x><y>144</y><w>312</w><h>132</h></coordinates><panel_attributes>Resource
+--
+ResourceTypes : Enum
+--
+get_resource(type : ResourceType) : int
+set_resource(type : ResourceType, int) : void
+set_resource(type : ResourceType, int) : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>348</y><w>252</w><h>84</h></coordinates><panel_attributes>Necromancer
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>144</y><w>252</w><h>84</h></coordinates><panel_attributes>Undead
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>84</x><y>348</y><w>252</w><h>84</h></coordinates><panel_attributes>summoning_ritual
+--</panel_attributes><additional_attributes></additional_attributes></element></diagram>
