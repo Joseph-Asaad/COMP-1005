@@ -45,21 +45,15 @@ class Account(hasUUID):
         set_interest_rate(interest_rate : float) : void
             sets new interest rate, bounded between 0, 100%.
     """
-    # Enumerate possible account types, for type checking.
-    class AccountTypes(Enum):
-        SAVINGS = "savings"
-        CHECKING = "checking"
-        CREDIT = "credit"
 
-    def __init__(self, type, balance, owner, interest_rate, name=None):
+    def __init__(self, balance, owner, history, name=None):
         hasUUID.__init__(self)  # Assign an ID to this object.
         # Default setters.
-        self.set_type(type)
-        self.__balance = balance
+        self._balance = balance
         self.set_owner(owner)
-        self.set_interest_rate(interest_rate)
+        self.__history = []
 
-        # Accounts get a name no matter what, either "New Account" or (eg) "John's Account" if no name is provided.
+        # Accounts get a name no matter what, either "New Account" or (eg) "John's Account " if no name is provided.
         if name == None:
             if not owner == None:
                 self.set_name(owner.printName(
@@ -73,18 +67,22 @@ class Account(hasUUID):
     def increase_balance(self, amount):
         if amount < 0:
             return
-        self.__balance = self.__balance + amount
+        self._balance = self._balance + amount
+        from transaction import Transaction
+        self.__add_transaction(Transaction.TransactionTypes.DEPOSIT, amount)
         return 1
 
     def decrease_balance(self, amount):
-        if self.__balance < amount:
+        if self._balance < amount:
             print("insufficient funds in account ", self.get_ID())
             return -1
-        self.__balance = self.__balance - amount
+        self._balance = self._balance - amount
+        from transaction import Transaction
+        self.__add_transaction(Transaction.TransactionTypes.WITHDRAWAL, amount)
         return 1
 
     def get_balance(self):
-        return self.__balance
+        return self._balance
 
     # Getter, setter for account name
     def get_name(self):
@@ -95,49 +93,42 @@ class Account(hasUUID):
             return
         self.__name = new
 
+    name = property(get_name, set_name)
+
     # Getter, setter for owner.
     def get_owner(self):
         return self.__owner
 
     def set_owner(self, new):
         from client import Client  # Imported here to avoid circular reference.
-        if not type(new) == Client:
+        if not isinstance(new, Client):
             return
         if hasattr(self, '__owner'):
             self.__owner.remove_account(self)
         self.__owner = new
         self.__owner.add_account(self)
 
-    # Getter, setter for type.
-    def get_type(self):
-        return self.__type
+    owner = property(get_owner, set_owner)
 
-    def set_type(self, new):
-        if not isinstance(new, self.AccountTypes):
-            return
-        self.__type = new
+    def __add_transaction(self, type, amount, description=""):
+        from transaction import Transaction
 
-    # Getter, setter for interest rate.
-    def get_interest_rate(self):
-        return self.__interest_rate
+        self.__history.append(Transaction(type, amount, description))
 
-    def set_interest_rate(self, new):
-        if not isinstance(new, float) or new < 0 or new > 100:
-            return
-        self.__interest_rate = new
+    def get_history(self):
+        return "\n".join(str(transaction) for transaction in self.__history)
 
     # Override built-in functions.
+
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
                 ", name=" + self.__name +
-                ", type=" + self.__type.value +
-                ", balance=" + str(self.__balance)
+                ", balance=" + str(self._balance)
                 )
 
     def __repr__(self):
         return ("ID_number=" + str(self.get_ID()) +
                 ", name=" + self.__name +
                 ", owner=" + str(self.get_owner()) +
-                ", type=" + self.__type.value +
-                ", balance=" + str(self.__balance)
+                ", balance=" + str(self._balance)
                 )

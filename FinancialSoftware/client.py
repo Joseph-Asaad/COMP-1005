@@ -125,6 +125,8 @@ class Client(hasUUID):
             return
         self.__dob = new
 
+    dob = property(get_dob, set_dob)
+
     # Getter, setter for phone number.
     def get_phone(self):
         return self.__phone
@@ -135,6 +137,8 @@ class Client(hasUUID):
             self.set_phone(phonenumbers.parse("+1 {}".format(new)))
         self.__phone = new
 
+    phone = property(get_phone, set_phone)
+
     # Getter, setter for email.
     def get_email(self):
         return self.__email
@@ -144,6 +148,8 @@ class Client(hasUUID):
             return
         self.__email = new
 
+    email = property(get_email, set_email)
+
     # Getter, setter for address.
     def get_address(self):
         return self.__address
@@ -152,6 +158,8 @@ class Client(hasUUID):
         if (not isinstance(new, str)):
             return
         self.__address = new
+
+    address = property(get_address, set_address)
 
     # Getter, setter for preferred branch.
     def get_preferred_branch(self):
