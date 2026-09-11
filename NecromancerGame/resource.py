@@ -5,6 +5,8 @@ class Resource:
     -------
     add_resource (resource : ResourceType  count : int) : void
         adds/subtracts from the selected resource.
+    subtract_resource (resource : ResourceType  count : int) : void
+            adds/subtracts from the selected resource.
     get_resource (resource : ResourceType, count : int) : int
         returns the count of the selected resource.
     """  # TODO : update
@@ -43,14 +45,18 @@ class Resource:
     def add_resource(self, counts: int[5]):  # add_resource([])
         if not (count >= 0 for count in counts):
             return
-        for i in counts:
-            self.__resources[i] += counts[i]
+        self.__resources += counts
 
-    def subtract_resource(self, counts: int[5]):  # add_resource([])
-        if not (count >= 0 for count in counts):
-            return
-        for i in counts:
-            self.__resources[i] -= counts[i]
+    # add_resource([])
+    def subtract_resource(self, counts: int[5], simulate: bool):
+        if (not count >= 0 for count in counts):
+            raise (ValueError)
+        if (not finalcount >= 0 for finalcount in self.__resources-counts):
+            return False
+        if simulate:
+            for i in counts:
+                self.__resources[i] -= counts[i]
+        return True
 
     def get_resource(self, resource):
         return self.__resources[resource.value]

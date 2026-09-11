@@ -1,10 +1,15 @@
-class Undead:
+from abc import ABC
 
-    def __init__(self):
+
+class Undead():
+
+    def __init__(self, id, health, power):
+        self._health = health
+        self.__power = power
         self.__unit_identifier = None
         self.__name = None
-        self.__health = None
         self.__level = None
+        self.id = id
 
         self.MIN_HEALTH = 0
         self.MAX_HEALTH = 100
@@ -33,5 +38,37 @@ class Undead:
 
     power = property(get_power, None)
 
+    def command():
+        print("I will follow your command!")
+
     def __str__(self):
-        return f"id={self.__unit_identifier}, name={self.__name}, health={self.__health}/{self.MAX_HEALTH}, power={self.power}/{self.MAX_POWER}"
+        return f"id={self.__unit_identifier}, name={self.__name}, health={self._health}/{self.MAX_HEALTH}, power={self.power}/{self.MAX_POWER}"
+
+
+class WarriorUndead(Undead):
+
+    def command():
+        super().command()
+        print("I will fight for you!")
+
+
+class CursedUndead(Undead):
+    def command():
+        super().command()
+        print("I will curse your enemies?")
+
+
+class SkeletonWarrior(WarriorUndead):
+    pass
+
+
+class PhantomGuardian(WarriorUndead):
+    pass
+
+
+class VengefulGhost(CursedUndead):
+    pass
+
+
+class PutridZombie(CursedUndead):
+    pass
