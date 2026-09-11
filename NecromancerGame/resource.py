@@ -41,10 +41,16 @@ class Resource:
                  globals(), namespace)
 
     def add_resource(self, counts: int[5]):  # add_resource([])
+        if not (count >= 0 for count in counts):
+            return
         for i in counts:
-            self.__resources[i] += counts[i]  # TODO: validate > 0
+            self.__resources[i] += counts[i]
 
-    # TODO: subtract_resources()
+    def subtract_resource(self, counts: int[5]):  # add_resource([])
+        if not (count >= 0 for count in counts):
+            return
+        for i in counts:
+            self.__resources[i] -= counts[i]
 
     def get_resource(self, resource):
         return self.__resources[resource.value]

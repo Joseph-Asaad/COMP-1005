@@ -25,11 +25,9 @@ class Undead:
         return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER)
 
     def increase_level(self):
-        if self.__level > self.MAX_LEVEL:
+        if self.__level >= self.MAX_LEVEL:
             return False
-        self.__level == min(
-            # TODO: remove redundant check
-            max(self.MIN_LEVEL, self.__level + 1, self.MAX_LEVEL))
+        self.__level += 1
         print(self)
         return True
 
