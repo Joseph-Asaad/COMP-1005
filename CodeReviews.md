@@ -9,3 +9,9 @@
  - need comments
  - need docstrings
  - need linting
+
+ # Code review 4 : 
+  - validate add_resources
+  - add subtract_resources
+  - add validation for has enough resources
+  - finish necromancer
