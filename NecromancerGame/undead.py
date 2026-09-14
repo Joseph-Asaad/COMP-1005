@@ -8,7 +8,7 @@ class Undead():
         self.__power = power
         self.__unit_identifier = None
         self.__name = None
-        self.__level = None
+        self.__level = 1
         self.id = id
 
         self.MIN_HEALTH = 0
@@ -22,12 +22,12 @@ class Undead():
         self.LEVEL_HEALTH_GAIN = 1
 
     def get_max_health(self):
-        return min(max(self.MIN_HEALTH, self.__level * self.LEVEL_HEALTH_GAIN), self.MAX_HEALTH)
+        return min(max(self.MIN_HEALTH, self.__level * self.LEVEL_HEALTH_GAIN), self.MAX_HEALTH) + self._health
 
     health = property(get_max_health, None)
 
-    def get_power(self):
-        return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER)
+    def get_power(self):  # TODO change to when written
+        return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER) + self.__power
 
     def increase_level(self):
         if self.__level >= self.MAX_LEVEL:
@@ -72,3 +72,5 @@ class VengefulGhost(CursedUndead):
 
 class PutridZombie(CursedUndead):
     pass
+
+# TODO split into 7 files

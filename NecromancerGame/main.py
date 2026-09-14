@@ -23,6 +23,9 @@ summonPutridZombie = SummoningRitual(
 summonPhantomGuardian = SummoningRitual(
     undead.PhantomGuardian, "Summon Phantom Guardian", "Phantom Guardian", 90, 2, [0, 4, 0, 0, 5])
 
+test = SummoningRitual(
+    "hello", "Summon Phantom Guardian", "Phantom Guardian", 90, 2, [0, 4, 0, 0, 5])
+
 
 james.perform_summoning_ritual(summonPutridZombie)
 james.perform_summoning_ritual(summonPhantomGuardian)

@@ -11,7 +11,7 @@ class SummoningRitual:
         self.initial_power = initial_power
         self.__ritual_name = ritual_name
         self.__undead_name = undead_name
-        self.__undead_type = undead_type
+        self.__undead_type = undead_type  # TODO add type checking
 
     def can_be_performed_with_resources(self, resource):
         return (resource.subtract_resource(self.__resource_cost, False))
@@ -21,4 +21,4 @@ class SummoningRitual:
 
     def create_undead(self, id):
         from undead import Undead
-        return self.__undead_type.__init__(id, self.initial_health, self.initial_power)
+        return self.__undead_type(id, self.initial_health, self.initial_power)

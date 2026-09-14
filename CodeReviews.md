@@ -15,3 +15,10 @@
   - add subtract_resources
   - add validation for has enough resources
   - finish necromancer
+
+  # Code review 5 : 
+  - use ID instead of index to access undead
+  - update docstrings
+  - add type checking to summoning ritual
+  - update max health logic
+  - split undead into 7 separate modules

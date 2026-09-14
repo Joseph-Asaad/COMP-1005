@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 class Resource:
     """
     At
@@ -42,16 +45,18 @@ class Resource:
             exec(f"{self.__class__.__name__}.{name} = property({self.__class__.__name__}.{name}_getter, None)",  # create a property from the getter
                  globals(), namespace)
 
-    def add_resource(self, counts: int[5]):  # add_resource([])
+    # add_resource([])
+    def add_resource(self, counts: Tuple[int, int, int, int, int]):
         if not (count >= 0 for count in counts):
             return
-        self.__resources += counts
+        self.__resources = [a + b for a,
+                            b in zip(self.__resources, list(counts))]
 
     # add_resource([])
-    def subtract_resource(self, counts: int[5], simulate: bool):
+    def subtract_resource(self, counts: Tuple[int, int, int, int, int], simulate: bool):
         if (not count >= 0 for count in counts):
             raise (ValueError)
-        if (not finalcount >= 0 for finalcount in self.__resources-counts):
+        if (not prev - sub >= 0 for prev, sub in zip(self.__resources, list(counts))):
             return False
         if simulate:
             for i in counts:
