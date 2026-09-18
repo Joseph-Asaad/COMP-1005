@@ -26,7 +26,7 @@ class Undead():
 
     health = property(get_max_health, None)
 
-    def get_power(self):  # TODO change to when written
+    def get_power(self):  # TODO change to when written, healing should happen on level-up
         return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER) + self.__power
 
     def increase_level(self):
@@ -38,39 +38,8 @@ class Undead():
 
     power = property(get_power, None)
 
-    def command():
+    def command(self):
         print("I will follow your command!")
 
     def __str__(self):
         return f"id={self.__unit_identifier}, name={self.__name}, health={self._health}/{self.MAX_HEALTH}, power={self.power}/{self.MAX_POWER}"
-
-
-class WarriorUndead(Undead):
-
-    def command():
-        super().command()
-        print("I will fight for you!")
-
-
-class CursedUndead(Undead):
-    def command():
-        super().command()
-        print("I will curse your enemies?")
-
-
-class SkeletonWarrior(WarriorUndead):
-    pass
-
-
-class PhantomGuardian(WarriorUndead):
-    pass
-
-
-class VengefulGhost(CursedUndead):
-    pass
-
-
-class PutridZombie(CursedUndead):
-    pass
-
-# TODO split into 7 files

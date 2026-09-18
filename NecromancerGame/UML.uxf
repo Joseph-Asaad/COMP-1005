@@ -1,10 +1,10 @@
-<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>77</x><y>176</y><w>286</w><h>121</h></coordinates><panel_attributes>Resource
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>77</x><y>363</y><w>286</w><h>121</h></coordinates><panel_attributes>Resource
 --
 ResourceTypes : Enum
 --
 get_resource(type : ResourceType) : int
 set_resource(type : ResourceType, int) : void
-set_resource(type : ResourceType, int) : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>363</y><w>231</w><h>154</h></coordinates><panel_attributes>Necromancer
+set_resource(type : ResourceType, int) : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>550</y><w>231</w><h>154</h></coordinates><panel_attributes>Necromancer
 --
 resource {readonly}
 --
@@ -16,12 +16,12 @@ level_up_undead()
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>165</y><w>231</w><h>121</h></coordinates><panel_attributes>Undead
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>352</y><w>231</w><h>121</h></coordinates><panel_attributes>Undead
 --
 --
 +get_max_health()
 increase_level()
-command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>77</x><y>363</y><w>253</w><h>154</h></coordinates><panel_attributes>summoning_ritual
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>77</x><y>550</y><w>253</w><h>154</h></coordinates><panel_attributes>summoning_ritual
 --
 -resource_cost
 +initial_cost
@@ -30,4 +30,9 @@ command()</panel_attributes><additional_attributes></additional_attributes></ele
 +can_be_performed_with_resources()
 #consume_resources()
 +create_undead()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>220</y><w>99</w><h>253</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;10;10;10;10;210;70;210</additional_attributes></element><element><id>Relation</id><coordinates><x>374</x><y>220</y><w>88</w><h>253</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10;10;210;60;210</additional_attributes></element><element><id>Relation</id><coordinates><x>209</x><y>286</y><w>253</w><h>154</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;50;180;50;180;120;210;120</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>407</y><w>99</w><h>253</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;10;10;10;10;210;70;210</additional_attributes></element><element><id>Relation</id><coordinates><x>374</x><y>407</y><w>88</w><h>253</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10;10;210;60;210</additional_attributes></element><element><id>Relation</id><coordinates><x>209</x><y>473</y><w>253</w><h>154</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;50;180;50;180;120;210;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>99</x><y>11</y><w>231</w><h>121</h></coordinates><panel_attributes>Ph
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element></diagram>

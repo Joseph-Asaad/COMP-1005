@@ -26,6 +26,7 @@ class Resource:
         self.__resources = []  # Start with empty array.
 
         for typ in self.ResourceTypes:
+
             self.__resources.append(0)  # Initialise amount at 0.
             name = typ.value[0]  # Extract name, index from enum.
             index = typ.value[1]
@@ -54,13 +55,13 @@ class Resource:
 
     # add_resource([])
     def subtract_resource(self, counts: Tuple[int, int, int, int, int], simulate: bool):
-        if (not count >= 0 for count in counts):
+        if min(counts) < 0:
             raise (ValueError)
-        if (not prev - sub >= 0 for prev, sub in zip(self.__resources, list(counts))):
+        if not all(prev - sub >= 0 for prev, sub in zip(self.__resources, list(counts))):
             return False
         if simulate:
-            for i in counts:
-                self.__resources[i] -= counts[i]
+            self.__resources = [a - b for a,
+                                b in zip(self.__resources, list(counts))]
         return True
 
     def get_resource(self, resource):

@@ -1,33 +1,39 @@
-from resource import Resource
+# pyright: ignore[reportAttributeAccessIssue]
+from resourceHandler import Resource
 from summoning_ritual import SummoningRitual
-import undead as undead
 from necromancer import Necromancer
 
-resource_pack_1 = Resource()
+from undead.phantomGuardian import PhantomGuardian
+from undead.vengefulGhost import VengefulGhost
+from undead.putridZombie import PutridZombie
+from undead.skeletonWarrior import SkeletonWarrior
 
-resource_pack_1.add_resource([999, 999, 999, 999, 999])
-print(resource_pack_1.ectoplasm)
 
-james = Necromancer("james", resource_pack_1, 5)
+james = Necromancer("james", 5)
+james.get_resource().add_resource((999, 999, 999, 999, 999))
 
+print(f"We have {james.get_resource().ectoplasm} ectoplasm")
 
 summonSkeletonWarrior = SummoningRitual(
-    undead.SkeletonWarrior, "Summon Skeleton Warrior", "Skeleton Warrior", 20, 30, [1, 0, 4, 2, 2])
+    SkeletonWarrior, "Summon Skeleton Warrior", "Skeleton Warrior", 20, 30, (1, 0, 4, 2, 2))
 
 summonVengefulGhost = SummoningRitual(
-    undead.VengefulGhost, "Summon Vengeful Ghost", "Vengeful Ghost", 90, 2, [0, 3, 0, 0, 8])
+    VengefulGhost, "Summon Vengeful Ghost", "Vengeful Ghost", 90, 2, (0, 3, 0, 0, 8))
 
 summonPutridZombie = SummoningRitual(
-    undead.PutridZombie, "Summon Putrid Zombie", "Putrid Zombie", 90, 2, [0, 0, 4, 4, 2])
+    PutridZombie, "Summon Putrid Zombie", "Putrid Zombie", 90, 2, (0, 0, 4, 4, 2))
 
 summonPhantomGuardian = SummoningRitual(
-    undead.PhantomGuardian, "Summon Phantom Guardian", "Phantom Guardian", 90, 2, [0, 4, 0, 0, 5])
+    PhantomGuardian, "Summon Phantom Guardian", "Phantom Guardian", 90, 2, (0, 4, 0, 0, 5))
 
-test = SummoningRitual(
-    "hello", "Summon Phantom Guardian", "Phantom Guardian", 90, 2, [0, 4, 0, 0, 5])
+# test = SummoningRitual(
+# no workey
+#    "hello", "Summon Phantom Guardian", "Phantom Guardian", 90, 2, (0, 4, 0, 0, 5))
 
-
+print("  ---  Summoning stuff  ---   ")
 james.perform_summoning_ritual(summonPutridZombie)
 james.perform_summoning_ritual(summonPhantomGuardian)
 james.perform_summoning_ritual(summonSkeletonWarrior)
 james.perform_summoning_ritual(summonVengefulGhost)
+
+print(f"We have {james.get_resource().ectoplasm} ectoplasm")
