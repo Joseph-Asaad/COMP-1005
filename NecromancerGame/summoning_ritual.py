@@ -2,7 +2,7 @@ class SummoningRitual:
     from typing import Type
     from undead.undead import Undead
 
-    def __init__(self, undead_type: Type[Undead], ritual_name, undead_name, initial_health, initial_power, resource_cost: tuple[int, int, int, int, int]):
+    def __init__(self, undead_type: Type[Undead], ritual_name: str, undead_name: str, initial_health: float, initial_power: float, resource_cost: tuple[int, int, int, int, int]):
         from resourceHandler import Resource
         if resource_cost[Resource.ResourceTypes.ECTOPLASM.value[1]] < 1:
             raise (ValueError)
@@ -11,7 +11,7 @@ class SummoningRitual:
         self.initial_power = initial_power
         self.__ritual_name = ritual_name
         self.__undead_name = undead_name
-        self.__undead_type = undead_type  # TODO add type checking
+        self.__undead_type = undead_type
 
     def can_be_performed_with_resources(self, resource):
         return (resource.subtract_resource(self.__resource_cost, False))

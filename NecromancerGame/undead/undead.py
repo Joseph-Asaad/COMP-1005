@@ -22,17 +22,19 @@ class Undead():
         self.LEVEL_HEALTH_GAIN = 1
 
     def get_max_health(self):
-        return min(max(self.MIN_HEALTH, self.__level * self.LEVEL_HEALTH_GAIN), self.MAX_HEALTH) + self._health
+        return self._health
 
     health = property(get_max_health, None)
 
-    def get_power(self):  # TODO change to when written, healing should happen on level-up
-        return min(max(self.MIN_POWER, self.__level * self.LEVEL_POWER_GAIN), self.MAX_POWER) + self.__power
+    def get_power(self):
+        return self.__power
 
     def increase_level(self):
         if self.__level >= self.MAX_LEVEL:
             return False
         self.__level += 1
+        self._health += self.LEVEL_HEALTH_GAIN
+        self.__power += self.LEVEL_POWER_GAIN
         print(self)
         return True
 

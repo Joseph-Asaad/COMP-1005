@@ -38,8 +38,7 @@ class Necromancer:
         self.__undead[id] = None
 
     def get_undead_from_id(self, id) -> Undead:
-        # TODO : do this the hard way by checking IDs.
-        return self.__undead[id]
+        return next(undead for undead in self.__undead if undead.id == id)
 
     def level_up_undead(self, id):
         self.get_undead_from_id(id).increase_level()
