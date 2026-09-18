@@ -1,6 +1,7 @@
 class Necromancer:
     from resourceHandler import Resource
     from summoning_ritual import SummoningRitual
+    from undead.undead import Undead
 
     def __init__(self, name: str, max_controlled_undead: int):
         # pyright: ignore[reportAttributeAccessIssue]
@@ -25,14 +26,18 @@ class Necromancer:
         ritual.consume_resources(self.__resource)
         id = self.__undead.index(None)
         self.__undead[id] = (ritual.create_undead(id))
-        print(f"Rise, o evil {ritual.undead_type} and do my bidding!")
+        print(
+            f"Rise, o evil {ritual.undead_type.__name__} and do my bidding!")
         return id
 
     def dismiss_undead(self, id):
-        self.get_undead_from_id(id).__del__()
+        undead = self.get_undead_from_id(id)
+        print(
+            f"Begone, o worthless {type(undead).__name__}! You are of no use to me!")
+        del undead
         self.__undead[id] = None
 
-    def get_undead_from_id(self, id):
+    def get_undead_from_id(self, id) -> Undead:
         # TODO : do this the hard way by checking IDs.
         return self.__undead[id]
 
