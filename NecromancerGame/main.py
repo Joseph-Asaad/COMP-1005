@@ -48,9 +48,13 @@ james.perform_summoning_ritual(summonVengefulGhost)  # oh no
 james.dismiss_undead(theLastOne)
 scawyMonster = james.perform_summoning_ritual(summonDeathKnight)
 
+print(james.get_undead_from_id(scawyMonster).health)
+james.get_undead_from_id(scawyMonster).increase_level()
+print(james.get_undead_from_id(scawyMonster).health)
+
 print(
     f"The Death Knight fights by {james.get_undead_from_id(scawyMonster).combat_style()}")
 
 print(f"We have {james.get_resource().ectoplasm} ectoplasm")
 
-print(f"I have screwed up: {not (issubclass(DeathKnight, CursedUndead) and issubclass(DeathKnight, WarriorUndead) and issubclass(DeathKnight, Undead))}")
+print(f"I have screwed up: {not (isinstance(james.get_undead_from_id(scawyMonster), CursedUndead) and isinstance(james.get_undead_from_id(scawyMonster), WarriorUndead) and isinstance(james.get_undead_from_id(scawyMonster), Undead))}")

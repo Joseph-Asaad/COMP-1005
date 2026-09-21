@@ -1,10 +1,10 @@
-<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>77</x><y>363</y><w>286</w><h>121</h></coordinates><panel_attributes>Resource
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>293</x><y>399</y><w>182</w><h>77</h></coordinates><panel_attributes>Resource
 --
 ResourceTypes : Enum
 --
 get_resource(type : ResourceType) : int
 set_resource(type : ResourceType, int) : void
-set_resource(type : ResourceType, int) : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>550</y><w>231</w><h>154</h></coordinates><panel_attributes>Necromancer
+set_resource(type : ResourceType, int) : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>524</x><y>518</y><w>147</w><h>98</h></coordinates><panel_attributes>Necromancer
 --
 resource {readonly}
 --
@@ -16,12 +16,12 @@ level_up_undead()
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>352</y><w>231</w><h>121</h></coordinates><panel_attributes>Undead
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>524</x><y>392</y><w>147</w><h>77</h></coordinates><panel_attributes>Undead
 --
 --
 +get_max_health()
 increase_level()
-command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>77</x><y>550</y><w>253</w><h>154</h></coordinates><panel_attributes>summoning_ritual
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>293</x><y>518</y><w>161</w><h>98</h></coordinates><panel_attributes>summoning_ritual
 --
 -resource_cost
 +initial_cost
@@ -30,9 +30,39 @@ command()</panel_attributes><additional_attributes></additional_attributes></ele
 +can_be_performed_with_resources()
 #consume_resources()
 +create_undead()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>407</y><w>99</w><h>253</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;10;10;10;10;210;70;210</additional_attributes></element><element><id>Relation</id><coordinates><x>374</x><y>407</y><w>88</w><h>253</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10;10;210;60;210</additional_attributes></element><element><id>Relation</id><coordinates><x>209</x><y>473</y><w>253</w><h>154</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;50;180;50;180;120;210;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>99</x><y>11</y><w>231</w><h>121</h></coordinates><panel_attributes>Ph
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>244</x><y>427</y><w>63</w><h>161</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;10;10;10;10;210;70;210</additional_attributes></element><element><id>Relation</id><coordinates><x>482</x><y>427</y><w>56</w><h>161</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>60;10;10;10;10;210;60;210</additional_attributes></element><element><id>Relation</id><coordinates><x>377</x><y>469</y><w>161</w><h>98</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;180;50;180;120;210;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>412</x><y>224</y><w>147</w><h>77</h></coordinates><panel_attributes>CursedUndead
 --
 --
 +get_max_health()
 increase_level()
-command()</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>224</y><w>147</w><h>77</h></coordinates><panel_attributes>WarriorUndead
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>482</x><y>294</y><w>98</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;140;120;90;10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>622</x><y>294</y><w>21</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>496</x><y>63</y><w>147</w><h>77</h></coordinates><panel_attributes>DeathKnight
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>615</x><y>133</y><w>21</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>531</x><y>133</y><w>21</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>335</x><y>63</y><w>147</w><h>77</h></coordinates><panel_attributes>PutridZombie
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>664</x><y>63</y><w>147</w><h>77</h></coordinates><panel_attributes>PhantomGuardian
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>174</x><y>63</y><w>147</w><h>77</h></coordinates><panel_attributes>VengefulGhost
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>391</x><y>133</y><w>140</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;130;180;60;10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>133</y><w>301</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>410;130;410;60;10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>825</x><y>63</y><w>147</w><h>77</h></coordinates><panel_attributes>WarriorSkeleton
+--
+--
++get_max_health()
+increase_level()
+command()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>657</x><y>133</y><w>98</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;60;120;60;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>657</x><y>133</y><w>266</w><h>105</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;60;360;60;360;10</additional_attributes></element></diagram>

@@ -1,6 +1,7 @@
 class SummoningRitual:
     from typing import Type
     from undead.undead import Undead
+    # TODO : check this works to be sure
 
     def __init__(self, undead_type: Type[Undead], ritual_name: str, undead_name: str, initial_health: float, initial_power: float, resource_cost: tuple[int, int, int, int, int]):
         from resourceHandler import Resource
