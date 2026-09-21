@@ -1,5 +1,7 @@
 from client import Client
 from account import Account
+from everydayAccount import EverydayAccount
+from savingsAccount import SavingsAccount
 from transaction import Transaction
 from branch import Branch
 
@@ -53,22 +55,20 @@ clients.append(Client(["Thomas", "Edward", "Lawrence"],
 
 
 # Create accounts.
-accounts.append(Account(Account.AccountTypes.CHECKING,
-                        15.32,
-                        clients[0],
-                        0,
-                        "Expenses"
-                        ))
+accounts.append(SavingsAccount(15.32,
+                               clients[0],
+                               interest_rate=0.01,
+                               min_balance=1000,
+                               name="Savings"
+                               ))
 
-accounts.append(Account(Account.AccountTypes.CHECKING,
-                        9323534.2,
+accounts.append(Account(9323534.2,
                         clients[1],
                         0.015))
 
-accounts.append(Account(Account.AccountTypes.SAVINGS,
-                        2310.63,
-                        clients[2],
-                        0.02))
+accounts.append(EverydayAccount(2310.63,
+                                clients[2],
+                                1000))
 
 # Create transactions.
 transactions.append(Transaction(
@@ -124,3 +124,10 @@ print(repr(clients[1]))
 print(repr(accounts[2]))
 print(repr(transactions[1]))
 print(repr(branches[0]))
+
+
+print('\n\n\n\n --------------------- Part 2 --------------------------------------------------------- \n\n')
+
+accounts[2].decrease_balance(1500)
+
+print(accounts[2].get_history())

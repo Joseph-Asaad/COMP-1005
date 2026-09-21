@@ -59,11 +59,11 @@ class Branch(hasUUID):
     # Open or close the branch.
     def open(self):
         self.__is_open = True
-        print("branch", self.__branch_number, "is now open")
+        print("branch", self.branch_number, "is now open")
 
     def close(self):
         self.__is_open = False
-        print("branch", self.__branch_number, "is now closed")
+        print("branch", self.branch_number, "is now closed")
 
     def is_open(self):
         return self.__is_open
@@ -77,6 +77,8 @@ class Branch(hasUUID):
             return
         self.__branch_number = new
 
+    branch_number = property(get_branch_number, set_branch_number)
+
     # Getter, setter for address.
     def get_address(self):
         return self.__address
@@ -85,6 +87,8 @@ class Branch(hasUUID):
         if (not isinstance(new, str)):
             return
         self.__address = new
+
+    address = property(get_address, set_address)
 
     # Getter, setter for phone number.
     def get_phone_number(self):
@@ -97,6 +101,8 @@ class Branch(hasUUID):
             return
         self.__phone_number = new
 
+    phone_number = property(get_phone_number, set_phone_number)
+
     # Getter, setter for name.
     def get_name(self):
         return self.__name
@@ -106,19 +112,21 @@ class Branch(hasUUID):
             return
         self.__name = new
 
+    name = property(get_name, set_name)
+
     # Override built-in functions.
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
-                ", name=\"" + self.__name + "\"" +
-                ", address=\"" + self.__address + "\"" +
+                ", name=\"" + self.name + "\"" +
+                ", address=\"" + self.address + "\"" +
                 ", phone_number=" + str(self.get_phone_number()) +
                 ", is_open=" + str(self.__is_open)
                 )
 
     def __repr__(self):
         return ("ID_number=" + str(self.get_ID()) +
-                ", name=\"" + self.__name + "\"" +
-                ", address=\"" + self.__address + "\"" +
+                ", name=\"" + self.name + "\"" +
+                ", address=\"" + self.address + "\"" +
                 ", phone_number=" + str(self.get_phone_number()) +
                 ", is_open=" + str(self.__is_open)
                 )

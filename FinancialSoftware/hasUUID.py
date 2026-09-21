@@ -25,6 +25,8 @@ class hasUUID:
         if (not hasattr(self, '_UUID')) or self._UUID == None:
             self._UUID = uuid
 
+    id = property(get_ID, set_ID)
+
     @classmethod
     def __init__(cls, self):
         self.set_ID()
