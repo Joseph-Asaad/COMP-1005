@@ -34,9 +34,10 @@ summonPhantomGuardian = SummoningRitual(
 summonDeathKnight = SummoningRitual(
     DeathKnight, "Summon Death Knight", "Death Knight", 90, 2, (10, 20, 30, 40, 50))
 
-# test = SummoningRitual(
-# no workey
-#    "hello", "Summon Phantom Guardian", "Phantom Guardian", 90, 2, (0, 4, 0, 0, 5))
+# test = SummoningRitual("a string", "Summon Phantom Guardian",
+#                       "Phantom Guardian", 90, 2, (0, 4, 0, 0, 5))
+# Doesn't work, "a string" is not a valid type
+
 
 print("  ---  Summoning stuff  ---   ")
 james.perform_summoning_ritual(summonPutridZombie)

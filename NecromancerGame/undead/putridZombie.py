@@ -1,9 +1,9 @@
 
 
-from undead.cursedUndead import CursedUndead
+from undead.undead import Undead
 
 # TODO undead, not cursed undead
 
 
-class PutridZombie(CursedUndead):
+class PutridZombie(Undead):
     pass
