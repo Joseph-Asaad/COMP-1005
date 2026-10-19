@@ -3,13 +3,17 @@ from typing import Tuple
 
 class Resource:
     """
-    At
+    Attributes
+    ----------
+    ResourceTypes : Enum
+        Enum of the five kinds of resoure: Necrotic Runes, Spirit Runes, Bone Runes, Flesh Runes, and Ectoplasm.
+
     Methods
     -------
     add_resource (resource : ResourceType  count : int) : void
-        adds/subtracts from the selected resource.
-    subtract_resource (resource : ResourceType  count : int) : void
-            adds/subtracts from the selected resource.
+        Adds to the selected resource.
+    subtract_resource (resource : ResourceType,  count : int, simulate : bool) : void
+            Subtracts [count] resources of type [resource] from self, returns self. If [simulate] is false, does not have side effects and only affects the returned copy, not the object itself.
     get_resource (resource : ResourceType, count : int) : int
         returns the count of the selected resource.
     """  # TODO : update

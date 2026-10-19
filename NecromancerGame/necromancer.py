@@ -1,11 +1,45 @@
 class Necromancer:
-    from resourceHandler import Resource
+    """
+
+    This class represents a Necromancer.
+
+    Attributes
+    ----------
+    __resource : Resource
+        Resource object associated with the Necromancer.
+
+    __max_controlled_undead : int
+        The maximum number of undead the Necromancer can control.
+
+    __undead : Undead[__max_controlled_undead]
+        Array of Undead, corresponds to the currently controlled Undead.
+
+    Methods
+    -------
+    get_resource(void) : Resource
+        Returns associated Resource object.
+
+    perform_summoning_ritual(ritual : SummoningRitual) : void
+        Uses [ritual] to summon undead if possible, adds them to the Necromancer.
+
+    dismiss_undead(id : int) : void
+        Deletes the Undead with the ID [id], frees a space for another Undead to take its place.
+
+    get_undead_from_id(id : int) : Undead
+        Returns the Undead with the ID [id].
+
+    level_up_undead(id : int) : void
+        Levels up the Undead with the ID [id] by one level.
+
+    """
+
+    from resource_handler import Resource
     from summoning_ritual import SummoningRitual
-    from undead.undead import Undead
+    from undead_classes.undead import Undead
 
     def __init__(self, name: str, max_controlled_undead: int):
         # pyright: ignore[reportAttributeAccessIssue]
-        from resourceHandler import Resource
+        from resource_handler import Resource
         self.__resource = Resource()
         self.__max_controlled_undead = 5
         self.__undead = [None] * max_controlled_undead

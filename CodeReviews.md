@@ -65,3 +65,11 @@
   ### Action
   - Documentation is still messed up.
   - Added "Action" sections to this document.
+
+  # Code review 7 : 
+  ### Feedback
+  - comments
+  - snake case module names
+  - 
+
+SHOULD I PUT GETTERS, SETTERS, AND PUBLIC AND PRIVATE VALUES IN DOCSTRINGS?

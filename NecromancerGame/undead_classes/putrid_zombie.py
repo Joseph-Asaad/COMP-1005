@@ -1,6 +1,6 @@
 
 
-from undead.undead import Undead
+from undead_classes.undead import Undead
 
 # TODO undead, not cursed undead
 

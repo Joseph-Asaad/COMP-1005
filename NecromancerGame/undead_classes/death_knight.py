@@ -1,6 +1,6 @@
-from undead.undead import Undead
-from undead.cursedUndead import CursedUndead
-from undead.warriorUndead import WarriorUndead
+from undead_classes.undead import Undead
+from undead_classes.cursed_undead import CursedUndead
+from undead_classes.warrior_undead import WarriorUndead
 
 
 class DeathKnight(CursedUndead, WarriorUndead):

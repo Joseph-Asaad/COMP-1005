@@ -1,4 +1,4 @@
-from undead.undead import Undead
+from undead_classes.undead import Undead
 
 
 class WarriorUndead(Undead):
