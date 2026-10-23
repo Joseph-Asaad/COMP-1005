@@ -66,7 +66,7 @@ class Client(hasUUID):
         self.set_address(address)
         self.set_preferred_branch(preferred_branch)
 
-        self.__accounts = []  # Allow accounts to be added on initialisation.
+        self.__accounts = {}  # Allow accounts to be added on initialisation.
         for acc in accounts:
             self.add_account(acc)
 
@@ -182,14 +182,17 @@ class Client(hasUUID):
 
     # Add and remove accounts from this user.
     def remove_account(self, acc):
-        self.__accounts.remove(acc)
+        self.__accounts[acc.id] = None
 
     def add_account(self, acc):
         # Imported here to avoid circular reference.
         from account import Account
         if not isinstance(acc, Account):
             return
-        self.__accounts.append(acc)
+        self.__accounts[acc.id] = acc
+
+    def get_account(self, id):
+        return self.__accounts[id]
 
     # Override built-in functions.
     def __str__(self):
