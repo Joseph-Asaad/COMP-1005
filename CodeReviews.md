@@ -29,6 +29,9 @@
    - add subtract_resources
    - add validation for has enough resources
    - finish necromancer
+  ### Action:
+   - added validation.
+  ### Learning Outcomes
 
   # Code review 5 : 
    ### Feedback 
@@ -42,6 +45,7 @@
    - docstrings are now more accurate, still need work
    - health is now set to initial health originally, changes only on level up.
    - different undead base and child classes are now in their own files, all in undead folder.
+   ### Learning Outcomes
 
  # Code review 6 : 
   ### Feedback
@@ -54,6 +58,7 @@
   - UML still borked
   - docstrings still borked too
   - Added "Action" sections to this document.
+  ### Learning Outcomes
 
  # Code review 6 : 
   ### Feedback
@@ -65,11 +70,25 @@
   ### Action
   - Documentation is still messed up.
   - Added "Action" sections to this document.
+  ### Learning Outcomes
+  I learned all about the importance of UML diagrams as a communication and administration tool!
 
   # Code review 7 : 
   ### Feedback
   - comments
   - snake case module names
-  - 
+  ### Action
+  - Added more comments
+  - renamed modules
+  ### Learning Outcomes
+  I learned the importance of verbose and thorough documentation for the software development process.
 
-SHOULD I PUT GETTERS, SETTERS, AND PUBLIC AND PRIVATE VALUES IN DOCSTRINGS?
+  # Code review 8 : 
+  ### Feedback
+  - I should document property() properties using ????????
+  - I need to write learning outcomes!
+  ### Action
+  - I updated docstrings
+  - Added "Learning Outcomes" sections to this document.
+  ### Learning Outcomes
+  I learned that I need to write about what I "learned".
