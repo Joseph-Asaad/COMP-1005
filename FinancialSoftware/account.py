@@ -46,7 +46,7 @@ class Account(hasUUID):
             sets new interest rate, bounded between 0, 100%.
     """
 
-    def __init__(self, balance, owner, history, name=None):
+    def __init__(self, balance, owner, name=None):
         hasUUID.__init__(self)  # Assign an ID to this object.
         # Default setters.
         self._balance = balance
