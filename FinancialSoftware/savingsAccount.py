@@ -2,6 +2,11 @@ from account import Account
 
 
 class SavingsAccount(Account):
+    """
+
+    interest_rate: ....
+    """
+
     def __init__(self, balance, owner, interest_rate, min_balance, name=None):
         super().__init__(balance, owner, name)
         self.__interest_rate = interest_rate

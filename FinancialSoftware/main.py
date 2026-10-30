@@ -131,3 +131,11 @@ print('\n\n\n\n --------------------- Part 2 -----------------------------------
 accounts[2].decrease_balance(1500)
 
 print(accounts[2].get_history())
+
+print(repr(branches[1]))
+
+
+print("\n--- UUID check ---")
+all_objects = clients + accounts + transactions + branches
+for obj in all_objects:
+    print(f"{type(obj).__name__} {obj.get_ID()}")

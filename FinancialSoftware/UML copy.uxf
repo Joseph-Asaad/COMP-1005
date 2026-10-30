@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>4</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>384</x><y>268</y><w>84</w><h>64</h></coordinates><panel_attributes>Transaction
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>946</x><y>451</y><w>231</w><h>176</h></coordinates><panel_attributes>Transaction
 --
 +ID_number: UUID-4
 
@@ -8,7 +8,7 @@
 --
 Responsibilities
 -- Resp1
-*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>304</y><w>124</w><h>80</h></coordinates><panel_attributes>Client
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>484</x><y>550</y><w>341</w><h>220</h></coordinates><panel_attributes>Client
 --
 + ID_number:  UUID-4
 + names : String[]
@@ -21,7 +21,7 @@ Responsibilities
 - preferred_branch : Branch
 + preferred_contact_method : enum ContactMethods
 --
-printName (format : enum NameFormats) : String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>64</x><y>272</y><w>84</w><h>76</h></coordinates><panel_attributes>Branch
+printName (format : enum NameFormats) : String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>66</x><y>462</y><w>231</w><h>209</h></coordinates><panel_attributes>Branch
 --
 + ID_number :  UUID-4
 + branch_number : int
@@ -31,33 +31,33 @@ printName (format : enum NameFormats) : String</panel_attributes><additional_att
 + name : String
 --
 + open ()
-+ close ()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>292</y><w>120</w><h>80</h></coordinates><panel_attributes>Account
++ close ()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1320</x><y>517</y><w>330</w><h>220</h></coordinates><panel_attributes>Account
 --
 + ID-number :  UUID-4
 + name : String
 + type : enum
 + balance : int
-+ history : Transaction []
++ history : {uuid : Transaction}
 + owners : Client
 + interest_rate : int
 --
 + increase_balance(amount : int)
 + decrease_balance (amount : int)
  + promote_member (member : client, actor : client)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>464</x><y>268</y><w>64</w><h>72</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1166</x><y>451</y><w>176</w><h>198</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
-m2=1</panel_attributes><additional_attributes>10;10;50;10;50;150;140;150</additional_attributes></element><element><id>Relation</id><coordinates><x>336</x><y>332</y><w>192</w><h>28</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes><additional_attributes>10;10;50;10;50;150;140;150</additional_attributes></element><element><id>Relation</id><coordinates><x>814</x><y>627</y><w>528</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=*
-</panel_attributes><additional_attributes>10;40;380;40;380;10;460;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>328</x><y>104</y><w>88</w><h>44</h></coordinates><panel_attributes>hasUUID
+</panel_attributes><additional_attributes>10;40;380;40;380;10;460;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>792</x><y>0</y><w>242</w><h>121</h></coordinates><panel_attributes>hasUUID
 --
 __-UUID-objects : [hasUUID]__
 
 + getUUID () : uuid4
 + setUUID (uuid4)
-+get_from_UUID (uuid4) : hasUUID</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>112</x><y>344</y><w>112</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
++get_from_UUID (uuid4) : hasUUID</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>660</y><w>308</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..1
-m2=*</panel_attributes><additional_attributes>10;10;10;70;260;70</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>368</y><w>148</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;350;50;350;100</additional_attributes></element><element><id>Relation</id><coordinates><x>392</x><y>144</y><w>204</w><h>156</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;490;100;490;370</additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>144</y><w>92</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;160;10;160;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>124</x><y>144</y><w>224</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>540;10;540;60;10;60;10;320</additional_attributes></element><element><id>UMLClass</id><coordinates><x>656</x><y>408</y><w>120</w><h>80</h></coordinates><panel_attributes>EverydayAccount
+m2=*</panel_attributes><additional_attributes>10;10;10;70;260;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1485</x><y>726</y><w>407</w><h>132</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;350;50;350;100</additional_attributes></element><element><id>Relation</id><coordinates><x>968</x><y>110</y><w>561</w><h>429</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;490;100;490;370</additional_attributes></element><element><id>Relation</id><coordinates><x>649</x><y>110</y><w>253</w><h>462</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;160;10;160;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>231</x><y>110</y><w>616</w><h>374</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>540;10;540;60;10;60;10;320</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1694</x><y>836</y><w>330</w><h>220</h></coordinates><panel_attributes>EverydayAccount
 --
 + ID-number :  UUID-4
 + name : String
@@ -70,7 +70,7 @@ m2=*</panel_attributes><additional_attributes>10;10;10;70;260;70</additional_att
 + increase_balance(amount : int)
 + decrease_balance (amount : int)
  + promote_member (member : client, actor : client)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>524</x><y>408</y><w>120</w><h>80</h></coordinates><panel_attributes>SavingsAccount
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1331</x><y>836</y><w>330</w><h>220</h></coordinates><panel_attributes>SavingsAccount
 --
 + ID-number :  UUID-4
 + name : String
@@ -83,4 +83,4 @@ m2=*</panel_attributes><additional_attributes>10;10;10;70;260;70</additional_att
 + increase_balance(amount : int)
 + decrease_balance (amount : int)
  + promote_member (member : client, actor : client)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>368</y><w>12</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1485</x><y>726</y><w>33</w><h>132</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element></diagram>

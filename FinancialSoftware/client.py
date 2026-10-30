@@ -181,13 +181,13 @@ class Client(hasUUID):
         self.__preferred_contact_method = new
 
     # Add and remove accounts from this user.
-    def remove_account(self, acc):
-        self.__accounts[acc.id] = None
+    def remove_account(self, id):
+        self.__accounts[id] = None
 
     def add_account(self, acc):
         # Imported here to avoid circular reference.
         from account import Account
-        if not isinstance(acc, Account):
+        if not isinstance(acc, Account) or acc.owner != None:
             return
         self.__accounts[acc.id] = acc
 

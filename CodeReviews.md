@@ -85,10 +85,11 @@
 
   # Code review 8 : 
   ### Feedback
-  - I should document property() properties using ????????
-  - I need to write learning outcomes!
+  - I should document property() properties as if they are normal public properties, ignoring the getter, setter, and private internal variable.
+  - My client should check that an account does not have another owner before adding it.
+  - I need to write learning outcomes.
   ### Action
   - I updated docstrings
   - Added "Learning Outcomes" sections to this document.
   ### Learning Outcomes
-  I learned that I need to write about what I "learned".
+  I learned that I need to write about what I "learned". This should include self-reflection.

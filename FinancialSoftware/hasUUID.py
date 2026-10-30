@@ -21,9 +21,10 @@ class hasUUID:
         return self._UUID
 
     # ID setter. IDs are immutable cannot be changed, only added to objects without IDs.
-    def set_ID(self, uuid=uuid.uuid4()):
+    def set_ID(self, new_id=None):
         if (not hasattr(self, '_UUID')) or self._UUID == None:
-            self._UUID = uuid
+            self._UUID = new_id
+        self._UUID = uuid.uuid4()
 
     id = property(get_ID, set_ID)
 

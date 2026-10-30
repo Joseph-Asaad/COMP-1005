@@ -62,16 +62,6 @@ class Undead(ABC):
         self.__level = 1
         self.id = id
 
-        self.MIN_HEALTH = 0
-        self.MAX_HEALTH = 100
-        self.MIN_POWER = 1
-        self.MAX_POWER = 100
-        self.MIN_LEVEL = 1
-        self.MAX_LEVEL = 100
-
-        self.LEVEL_POWER_GAIN = 5
-        self.LEVEL_HEALTH_GAIN = 1
-
     def get_max_health(self):
         return self.__health
 
