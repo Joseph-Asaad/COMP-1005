@@ -1,7 +1,8 @@
 from hasUUID import hasUUID
+from abc import ABC, abstractmethod
 
 
-class Account(hasUUID):
+class Account(hasUUID, metaclass=ABC):
     from enum import Enum
     """
     Class that represesnts an account.
@@ -72,14 +73,9 @@ class Account(hasUUID):
         self.__add_transaction(Transaction.TransactionTypes.DEPOSIT, amount)
         return 1
 
+    @abstractmethod
     def decrease_balance(self, amount):
-        if self._balance < amount:
-            print("insufficient funds in account ", self.get_ID())
-            return -1
-        self._balance = self._balance - amount
-        from transaction import Transaction
-        self.__add_transaction(Transaction.TransactionTypes.WITHDRAWAL, amount)
-        return 1
+        pass
 
     def get_balance(self):
         return self._balance

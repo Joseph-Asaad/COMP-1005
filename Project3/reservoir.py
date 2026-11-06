@@ -20,4 +20,4 @@ class Reservoir(Ticking):
     volume = property(lambda self: self.area * self.fluid_height)
 
     def on_update(self, delta_time):
-        self.point.pressure = self.fluid.density * self.fluid_height
+        self.point.pressure = 9.81 * self.fluid.density * self.fluid_height

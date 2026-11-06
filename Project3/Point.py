@@ -1,3 +1,6 @@
+from math import isnan
+
+
 class Point:
     """
     A point in space that can be connected to by pipes, reservoirs, etc.
@@ -28,14 +31,21 @@ class Point:
 
     def __init__(self, coords):
         self.coords = coords  # Coordinates as [x, y, z].
-        self.pressure = 0  # Approx atmostpheric pressure in Pa.
+        self.__pressure = 0  # Approx atmostpheric pressure in Pa.
         # Whether the pressure is set or can change.
         self.is_endpoint = False
         self.__connections = []
 
     def add_connection(self, new_connection):
+        from reservoir import Reservoir
         if isinstance(new_connection, Point) or isinstance(new_connection, list):
             raise (TypeError(f"???? : {new_connection}"))
+
+        # Enforce the 1:1 multiplicity of reservoirs.
+        if isinstance(new_connection, Reservoir) and any(isinstance(connection, Reservoir) for connection in self.connections):
+            raise MultiplicityException(
+                f"Point {self} already attached to Reservoir {next(connection for connection in self.connections if isinstance(connection, Reservoir))}")
+
         self.__connections.append(new_connection)
 
     def remove_connections(self, connection):
@@ -44,3 +54,32 @@ class Point:
             del self
 
     connections = property(lambda self: self.__connections, None)
+
+    def set_pressure(self, new_pressure):
+        if isnan(new_pressure):
+            raise ValueError("Cannot be NaN.")
+        self.__pressure = new_pressure
+
+    def get_pressure(self):
+        return self.__pressure
+
+    pressure = property(get_pressure, set_pressure)
+
+    def get_inflow_surplus(self):
+        """ Returns the vol. flow rate of the "extra" fluid flowing into the point that should be taken up by a reservoir. Positive value -> excess fluid."""
+        out = 0
+        for connection in self.connections:
+            from FlowComponent import FlowComponent
+            if not isinstance(connection, FlowComponent):
+                continue
+            if self == connection.ends[0]:
+                out -= connection.vol_flow_rate
+            else:
+                out += connection.vol_flow_rate
+        return out
+
+
+class MultiplicityException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)

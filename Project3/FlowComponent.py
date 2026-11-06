@@ -87,7 +87,7 @@ class FlowComponent(Ticking):
             # Find the pressure difference due to inertia
             p_inertia = FC.length*FC.fluid.density  # * dV/dt
 
-            h_height = (FC.ends[1].coords[2] - FC.ends[0].coords[2])
+            h_height = (FC.ends[0].coords[2] - FC.ends[1].coords[2])
 
             # Mechanical Energy Equation for p1 - p0 = rho*g*(z -h_loss + h_pump) + rho*L*dV/dt
             # therefore p1 - p0 - rho*L*(dV/dt) - rho*g*(z -h_loss + h_pump) = 0
@@ -149,21 +149,24 @@ class FlowComponent(Ticking):
                             f"Invalid connection type: {connection} is of invalid type {connection.__class__.__name__}"))
             A.append(LHS)
         # Use numpy for now to get numerical results because I can't be stuffed.
-        Xprime = np.linalg.solve(A, B)  # Solve linear system.
+        Y = np.linalg.solve(A, B)  # Solve linear system.
 
         # Update based on results.
-        for [i, result] in enumerate(Xprime):
+        for [i, result] in enumerate(Y):
             obj = X[i]
             if isinstance(obj, Point):  # Update point pressure.
-                obj.pressure = result
+                try:
+                    obj.pressure = result
+                except ValueError:
+                    print(ValueError)
 
             elif isinstance(obj, FlowComponent):  # Accelerate flow.
                 obj.velocity += result*delta_time
 
             elif isinstance(obj, Reservoir):  # Fill/Empty reservoir.
+                obj.fill_rate = obj.point.get_inflow_surplus()/obj.area
                 obj.fluid_height += (0.5*result*delta_time**2 +
                                      obj.fill_rate*delta_time)
-                obj.fill_rate += result * delta_time
 
     @staticmethod
     # Helper function for Colebrook-White Equation.
@@ -180,10 +183,6 @@ class FlowComponent(Ticking):
             f = (-2*log10(roughness/(3.7*D) + 2.5/(Re*sqrt(f))))**-2
             diff = abs(f-f_old)
         return f
-
-    # Helper function that could easily be replaced with numpy but we can't use external libraries so I guess I'll implement this myself.
-    def linsolve(coefficients):
-        pass
 
     def sign(x):
         """ Returns the sign of the input, -1, 0, or 1"""
