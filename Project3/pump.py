@@ -13,8 +13,8 @@ class Pump(Pipe, Ticking):
         The pressure the pump can produce when the velocity is zero.
     """
 
-    def __init__(self, length, radius, ends, roughness, static_pressure, max_speed):
-        super().__init__(length, radius, ends, roughness)
+    def __init__(self, radius, fluid, ends, roughness, static_pressure, max_speed, length=None):
+        super().__init__(radius, fluid, ends, roughness, length=None)
         self.static_pressure = static_pressure
         self.max_speed = max_speed
         self.throttle = 0
