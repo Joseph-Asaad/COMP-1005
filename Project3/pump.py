@@ -1,5 +1,6 @@
 from Pipe import Pipe
 from Ticking import Ticking
+from math import copysign
 
 
 class Pump(Pipe, Ticking):
@@ -23,8 +24,13 @@ class Pump(Pipe, Ticking):
         """ Apply pump pressure to flow component. """
         self.flow_component.h_pump = self.get_pump_pressure(
             self.flow_component.velocity)/(self.flow_component.fluid.density*9.81)
+        self.flow_component.h_pump = 0
 
     def get_pump_pressure(self, v):
         """ Helper function. Simulates the velocity-dependent performance curve of a pump. """
-        return (self.throttle*self.static_pressure*(self.max_speed-v)**(3/11)) / \
+        return (self.throttle*self.static_pressure*self.robust_power(self.max_speed-v, 3/11)) / \
             (self.max_speed**(3/11))
+
+    def robust_power(b, k):
+        """ Helper function to compute fractional powers without causing Python to return NaN for some reason."""
+        return copysign(1, b) * abs(b)**k
