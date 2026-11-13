@@ -6,6 +6,8 @@ from Ticking import Ticking
 from fluid import Fluid
 from pytest import approx
 from Point import MultiplicityError
+from pump import Pump
+from Point import Point
 
 
 class TestFlowComponent:
@@ -31,3 +33,10 @@ class TestFlowComponent:
         with pytest.raises(MultiplicityError) as e:
             new_reservoir = Reservoir(
                 fixture_1['startpoint'], 1, Fluid(1000, 0.001))
+
+    def test_pump_curve(self):
+        # Specs don't really matter.
+        pump = Pump(1, Fluid(1, 1), [
+                    Point([0, 0, 0]), Point([0, 0, 0])], 1, 10000, 2)
+        assert pump.get_pump_pressure(0) == pytest.approx(10000)
+        assert pump.get_pump_pressure(2) == pytest.approx(0)

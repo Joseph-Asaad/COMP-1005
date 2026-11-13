@@ -12,10 +12,13 @@ class Gauge(ABC):
                                ends[0].coords[2]+0.5 *
                                (ends[1].coords[2]-ends[0].coords[2])
                                ])
+        if not length == None:
+            length = length/2
+
         self.pipe_1 = Pipe(
-            radius, fluid, [ends[0], self.midpoint], roughness, length/2)
+            radius, fluid, [ends[0], self.midpoint], roughness, length)
         self.pipe_2 = Pipe(
-            radius, fluid, [ends[1], self.midpoint], roughness, length/2)
+            radius, fluid, [ends[1], self.midpoint], roughness, length)
 
     @abstractmethod
     def readout(self):

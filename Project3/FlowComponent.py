@@ -147,7 +147,7 @@ class FlowComponent(Ticking):
                         raise (TypeError(
                             f"Invalid connection type: {connection} is of invalid type {connection.__class__.__name__}"))
             A.append(LHS)
-        # Use numpy for now to get numerical results because I can't be stuffed.
+        # Use numpy to solve because I don't want to implement gaussian reduction myself, thanks for the exemption Billy.
         Y = np.linalg.solve(A, B)  # Solve linear system.
 
         # Update based on results.
