@@ -24,7 +24,6 @@ class Pump(Pipe, Ticking):
         """ Apply pump pressure to flow component. """
         self.flow_component.h_pump = self.get_pump_pressure(
             self.flow_component.velocity)/(self.flow_component.fluid.density*9.81)
-        self.flow_component.h_pump = 0
 
     def get_pump_pressure(self, v):
         """ Helper function. Simulates the velocity-dependent performance curve of a pump. """
