@@ -1,2 +1,4 @@
-Object Oriented Programming
-(yes, that does say 100% Python, don't ask me why)
+
+
+
+If I had time, I would refactor the point, reservoir and flowcomponent classes to implement provide_equation(X) : A, B so that they each handle their own linear equations instead of one big method in the FlowComponent class doing it.

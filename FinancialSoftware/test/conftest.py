@@ -12,9 +12,9 @@ def example_client(example_branch):
     from client import Client
     from datetime import datetime
 
-    return Client(["John", "Citizen"],
+    return Client(["John", "William", "Citizen"],
                   Client.Titles.MR,
-                  datetime.date(2026, 5, 4),
+                  datetime(2026, 4, 15),
                   "0412 558 903",
                   "john.citizen2000@gmail.com",
                   "10 Downing St., London, England",
@@ -35,3 +35,9 @@ def basic_everyday_account(example_client):
     from everydayAccount import EverydayAccount
 
     return EverydayAccount(0, example_client, 1000)
+
+
+@pytest.fixture
+def withdrawal():
+    from transaction import Transaction
+    return Transaction(Transaction.TransactionTypes.WITHDRAWAL, 500, "payment")

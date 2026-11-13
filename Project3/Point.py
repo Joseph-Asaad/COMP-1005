@@ -39,19 +39,17 @@ class Point:
     def add_connection(self, new_connection):
         from reservoir import Reservoir
         if isinstance(new_connection, Point) or isinstance(new_connection, list):
-            raise (TypeError(f"???? : {new_connection}"))
+            raise TypeError
 
         # Enforce the 1:1 multiplicity of reservoirs.
         if isinstance(new_connection, Reservoir) and any(isinstance(connection, Reservoir) for connection in self.connections):
-            raise MultiplicityException(
+            raise MultiplicityError(
                 f"Point {self} already attached to Reservoir {next(connection for connection in self.connections if isinstance(connection, Reservoir))}")
 
         self.__connections.append(new_connection)
 
     def remove_connections(self, connection):
         self.__connections.remove(connection)
-        if not self.__connections:  # Delete "orphaned" points.
-            del self
 
     connections = property(lambda self: self.__connections, None)
 
@@ -79,7 +77,7 @@ class Point:
         return out
 
 
-class MultiplicityException(Exception):
+class MultiplicityError(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
