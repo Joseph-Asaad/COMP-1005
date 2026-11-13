@@ -26,5 +26,5 @@ class Pump(Pipe, Ticking):
 
     def get_pump_pressure(self, v):
         """ Helper function. Simulates the velocity-dependent performance curve of a pump. """
-        return (self.throttleself.static_pressure*(self.max_speed-v)**(3/11)) / \
+        return (self.throttle*self.static_pressure*(self.max_speed-v)**(3/11)) / \
             (self.max_speed**(3/11))
