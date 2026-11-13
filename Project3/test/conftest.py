@@ -20,7 +20,5 @@ def fixture_1():
         out['endpoint'], 1/math.sqrt(math.pi), water)
     # Fill with 5m of water.
     out['reservoir_1'].fluid_height = 2
-    out['reservoir_1'].on_update(0)  # Update so changes take effect.
     out['reservoir_2'].fluid_height = 2
-    out['reservoir_2'].on_update(0)  # Update so changes take effect.
     return out

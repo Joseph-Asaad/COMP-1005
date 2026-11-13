@@ -29,5 +29,7 @@ class Reservoir(Ticking):
         self. __fluid_height = height
         self.on_update(None)
 
+    fluid_height = property(get_fluid_height, set_fluid_height)
+
     def on_update(self, delta_time):
         self.point.pressure = 9.81 * self.fluid.density * self.fluid_height
