@@ -14,7 +14,7 @@ class Pump(Pipe, Ticking):
     """
 
     def __init__(self, radius, fluid, ends, roughness, static_pressure, max_speed, length=None):
-        super().__init__(radius, fluid, ends, roughness, length=None)
+        super().__init__(radius, fluid, ends, roughness, length)
         self.static_pressure = static_pressure
         self.max_speed = max_speed
         self.throttle = 0
