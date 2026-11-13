@@ -20,9 +20,11 @@ class Pump(Pipe, Ticking):
         self.throttle = 0
 
     def on_update(self, delta_time):
-        """ Simulates the velocity-dependent performance curve of a pump."""
-        rho = self.flow_component.fluid.density
-        v = self.flow_component.velocity
-        self.flow_component.h_pump = \
-            (self.static_pressure*(self.max_speed-v)**(3/11)) / \
-            (rho*9.81*self.max_speed**(3/11))
+        """ Apply pump pressure to flow component. """
+        self.flow_component.h_pump = self.get_pump_pressure(
+            self.flow_component.velocity)/(self.flow_component.fluid.density*9.81)
+
+    def get_pump_pressure(self, v):
+        """ Helper function. Simulates the velocity-dependent performance curve of a pump. """
+        return (self.throttleself.static_pressure*(self.max_speed-v)**(3/11)) / \
+            (self.max_speed**(3/11))
