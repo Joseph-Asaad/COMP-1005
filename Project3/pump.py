@@ -32,5 +32,5 @@ class Pump(Pipe, Ticking):
             (self.max_speed**(3/11))
 
     def robust_power(b, k):
-        """ Helper function to compute fractional powers without causing Python to return NaN for some reason."""
+        """ Helper function to compute fractional powers of negative numbers without causing Python to return NaN for some reason."""
         return copysign(1, b) * abs(b)**k
