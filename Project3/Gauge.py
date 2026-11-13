@@ -3,7 +3,7 @@ from Point import Point
 from abc import ABC, abstractmethod
 
 
-class Gauge(metaclass=ABC):
+class Gauge(ABC):
 
     def __init__(self, ends):
         self.midpoint = Point([ends[0].coords[0]+0.5*(ends[1].coords[0]-ends[0].coords[0]),
@@ -17,5 +17,5 @@ class Gauge(metaclass=ABC):
         pass
 
     @abstractmethod
-    def readout():
+    def readout(self):
         pass

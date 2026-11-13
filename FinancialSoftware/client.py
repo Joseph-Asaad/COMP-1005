@@ -10,7 +10,7 @@ class Client(hasUUID):
     -------
     print_name(format : NameFormats) : str
         returns owner's name in specified format.
-    
+
     set_name(name : str[]) : void
         sets name to provided name.
 
@@ -34,25 +34,25 @@ class Client(hasUUID):
 
     set_email(email : str) : void
         sets client's email address.
-    
+
     get_address() : str
         returns client's address.
-    
+
     set_address(address : str) : void
         sets client's address.
-    
+
     get_preferred_branch() : Branch
         gets client's preferred branch.
-    
+
     set_preferred_branch(branch : Branch) : void
         sets client's preferred branch.
-    
+
     get_preferred_contact_method() : ContactMethods
         gets client's preferred contact method.
-    
+
     set_preferred_contact_method(contact_method : ContactMethods) : void
         sets client's preferred contact method.
-    
+
     """
 
     def __init__(self, names, title, dob, phone, email, address, accounts, preferred_branch, preferred_contact_method=None):
@@ -70,12 +70,11 @@ class Client(hasUUID):
         for acc in accounts:
             self.add_account(acc)
 
-        # Default contact method is phone.
-        self.set_preferred_contact_method(self.ContactMethods.PHONE)
-        # In case of the argument being left blank, the set_preferred_contact_method() method will reject a "None" type and do nothing.
-        self.set_preferred_contact_method(preferred_contact_method)
+        self.set_preferred_contact_method(
+            self.ContactMethods.PHONE if preferred_contact_method == None else preferred_contact_method)
 
     # Enumerates titles. Yes it's hard-coded, but it's easy to edit and a single source-of-truth.
+
     class Titles(Enum):
         MR = "Mr."
         MS = "Ms."
@@ -95,7 +94,7 @@ class Client(hasUUID):
         FORMAL = 2
         CASUAL = 3
 
-    def printName(self, format):  # Prints names.
+    def print_name(self, format):  # Prints names.
         match format:
             case self.NameFormats.DEFAULT:  # E.g. John Smith.
                 return self.__names[0] + " " + self.__names[-1]
@@ -108,12 +107,12 @@ class Client(hasUUID):
 
     def set_name(self, new):  # Normal setter for names.
         if not (isinstance(new, list) and all(isinstance(item, str) for item in new)):
-            return
+            raise (TypeError)
         self.__names = new
 
     def set_title(self, new):  # Normal setter for title.
         if (not isinstance(new, Client.Titles)):
-            return
+            raise TypeError
         self.__title = new
 
     # Getter, setter for date of birth.
@@ -122,7 +121,7 @@ class Client(hasUUID):
 
     def set_dob(self, new):
         if (not isinstance(new, datetime.date)):
-            return
+            raise TypeError
         self.__dob = new
 
     dob = property(get_dob, set_dob)
@@ -134,6 +133,8 @@ class Client(hasUUID):
     def set_phone(self, new):
         if (not isinstance(new, phonenumbers.PhoneNumber)):
             # Allow un-parsed inputs.
+            if not isinstance(new, str):
+                raise TypeError
             self.set_phone(phonenumbers.parse("+1 {}".format(new)))
         self.__phone = new
 
@@ -145,7 +146,7 @@ class Client(hasUUID):
 
     def set_email(self, new):
         if (not isinstance(new, str)):
-            return
+            raise TypeError
         self.__email = new
 
     email = property(get_email, set_email)
@@ -156,7 +157,7 @@ class Client(hasUUID):
 
     def set_address(self, new):
         if (not isinstance(new, str)):
-            return
+            raise TypeError
         self.__address = new
 
     address = property(get_address, set_address)
@@ -168,7 +169,7 @@ class Client(hasUUID):
     def set_preferred_branch(self, new):
         from branch import Branch  # Imported here to avoid circular reference.
         if (not isinstance(new, Branch)):
-            return
+            raise TypeError
         self.__preferred_branch = new
 
     # Getter, setter for preferred contact method.
@@ -177,7 +178,7 @@ class Client(hasUUID):
 
     def set_preferred_contact_method(self, new):
         if (not isinstance(new, self.ContactMethods)):
-            return
+            raise TypeError
         self.__preferred_contact_method = new
 
     # Add and remove accounts from this user.
@@ -197,10 +198,16 @@ class Client(hasUUID):
     # Override built-in functions.
     def __str__(self):
         return ("ID_number=" + str(self.get_ID()) +
-                ", name=\"" + self.printName(self.NameFormats.FULL) + "\""
+                ", name=\"" + self.print_name(self.NameFormats.FULL) + "\""
                 ", preferred_contact_method=" + self.get_preferred_contact_method())
 
     def __repr__(self):
-        return ("ID_number=" + str(self.get_ID()) +
-                ", name=\"" + self.printName(self.NameFormats.FULL) + "\""
-                ", preferred_contact_method=" + self.get_preferred_contact_method())
+        return f"ID_number={str(self.get_ID())}, \
+                name={self.print_name(self.NameFormats.FULL)}, \
+                dob={self.get_dob()}\
+                address={self.get_address()}\
+                preferred_contact_method={self.get_preferred_contact_method()}\
+                preferred_branch={self.get_preferred_branch()}\
+                phone_number={self.get_phone()}\
+                email={self.get_email()}\
+                "

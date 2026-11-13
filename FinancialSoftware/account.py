@@ -2,7 +2,7 @@ from hasUUID import hasUUID
 from abc import ABC, abstractmethod
 
 
-class Account(hasUUID, metaclass=ABC):
+class Account(hasUUID,  ABC):
     from enum import Enum
     """
     Class that represesnts an account.
@@ -50,17 +50,10 @@ class Account(hasUUID, metaclass=ABC):
     def __init__(self, balance, owner, name=None):
         hasUUID.__init__(self)  # Assign an ID to this object.
         # Default setters.
+        self.__name = name
         self._balance = balance
         self.set_owner(owner)
         self.__history = []
-
-        # Accounts get a name no matter what, either "New Account" or (eg) "John's Account " if no name is provided.
-        if name == None:
-            if not owner == None:
-                self.set_name(owner.printName(
-                    owner.__class__.NameFormats.CASUAL) + "\'s Account")
-            else:
-                self.set_name("New Account")
 
         owner.add_account(self)
 
@@ -68,9 +61,9 @@ class Account(hasUUID, metaclass=ABC):
     def increase_balance(self, amount):
         if amount < 0:
             return
-        self._balance = self._balance + amount
+        self._balance += amount
         from transaction import Transaction
-        self.__add_transaction(Transaction.TransactionTypes.DEPOSIT, amount)
+        self._add_transaction(Transaction.TransactionTypes.DEPOSIT, amount)
         return 1
 
     @abstractmethod
@@ -106,7 +99,7 @@ class Account(hasUUID, metaclass=ABC):
 
     owner = property(get_owner, set_owner)
 
-    def __add_transaction(self, type, amount, description=""):
+    def _add_transaction(self, type, amount, description=""):
         from transaction import Transaction
 
         self.__history.append(Transaction(type, amount, description))
@@ -117,10 +110,8 @@ class Account(hasUUID, metaclass=ABC):
     # Override built-in functions.
 
     def __str__(self):
-        return ("ID_number=" + str(self.get_ID()) +
-                ", name=" + self.__name +
-                ", balance=" + str(self._balance)
-                )
+        from client import Client
+        return (f"{self.owner.print_name(Client.NameFormats.DEFAULT)}'s Account \"{self.get_name()}\" with balance ${self.get_balance()}")
 
     def __repr__(self):
         return ("ID_number=" + str(self.get_ID()) +
@@ -128,3 +119,9 @@ class Account(hasUUID, metaclass=ABC):
                 ", owner=" + str(self.get_owner()) +
                 ", balance=" + str(self._balance)
                 )
+
+    class WithdrawalError(ValueError):
+        """Raised when an invalid withdrawal is attempted"""
+
+        def __init__(self, message="This amount cannot be withdrawn from this account at this time."):
+            super().__init__(message)

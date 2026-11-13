@@ -10,6 +10,7 @@ class FlowComponent(Ticking):
     flow_components = []  # Central registry of every FlowComponent.
 
     def __init__(self, radius, fluid, ends, roughness, length=None):
+        # Shame there are no macros in Python; this is just so I don't have to type out self.__class__ every time.
         cls = self.__class__
         self.fluid = fluid
         self.length = length if length != None else np.sqrt(
@@ -17,9 +18,9 @@ class FlowComponent(Ticking):
         self.radius = radius
         self.roughness = roughness
 
+        # Initial conditions.
         self.velocity = 0
         self.acceleration = 0
-
         self.h_pump = 0
 
         # Create association between flow component and both end points.
@@ -46,14 +47,12 @@ class FlowComponent(Ticking):
     @classmethod
     def on_update(cls, delta_time):  # Update state.
         """
-        Runs one simulation step.
+        Runs one simulation step by solving the following linear equations:
+
+        For each flow component, p1 - p0 - f(accel) = const, as per mechancial energy equation.
+        For each point, Sum(Area * accel) = 0 for each connection as per continuity equation.
+        For each point connected to a reservoir, p = const depending on reservoir pressure.
         """
-        # Uses a linear system of the following equations:
-        #
-        # For each flow component, p1 - p0 - f(accel) = const, as per mechancial energy equation.
-        # For each point, Sum(Area * accel) = 0 for each connection as per continuity equation.
-        # For each point connected to a reservoir, p = const depending on reservoir pressure.
-        #
 
         points = []  # Create and populate a dict of each point.
         # Assign an order from 0...n to each point
@@ -169,7 +168,6 @@ class FlowComponent(Ticking):
                                      obj.fill_rate*delta_time)
 
     @staticmethod
-    # Helper function for Colebrook-White Equation.
     def Colebrook_White(Re, roughness, D):
         """
         Iteratively solve the Colebrook-White equation to find f within a tolerance of 0.001x, or about 1%

@@ -7,7 +7,7 @@ from pytest import approx
 
 class TestFlowComponent:
     def test_colebrook_white(self):
-        f = FlowComponent.Colebrook_Wpythonhite(12054, 0, 1)
+        f = FlowComponent.Colebrook_White(12054, 0, 1)
         assert f == approx(0.02937793505)
 
     def test_pipe_length(self, example_pipe):

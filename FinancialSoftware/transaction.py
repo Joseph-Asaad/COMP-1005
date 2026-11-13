@@ -3,6 +3,8 @@ from hasUUID import hasUUID  # So transactions get UUIDs.
 
 class Transaction(hasUUID):
     """
+    Deposit or Withdrawal.
+
     Methods
     -------
     process() : void
@@ -65,10 +67,12 @@ class Transaction(hasUUID):
                 print("Transaction successfully processed")
             # Processed transactions don't need to be processed.
             case self.TransactionStatuses.PROCESSED:
-                print("Error: Transaction is already processed.")
+                raise self.OperationError(
+                    "Error: Transaction is already processed.")
             # Cancelled transactions cannot be proceessed.
             case self.TransactionStatuses.CANCELLED:
-                print("Error: Transaction has been cancelled.")
+                raise self.OperationError(
+                    "Error: Transaction has been cancelled.")
 
     def cancel(self):
         match self.__status:
@@ -78,10 +82,12 @@ class Transaction(hasUUID):
                 print("Transaction successfully cancelled")
             # Processed transactions cannot be processed.
             case self.TransactionStatuses.PROCESSED:
-                print("Error: Transaction is already processed.")
+                raise self.OperationError(
+                    "Error: Transaction is already processed.")
             # Cancelled transactions don't need to be cancelled.
             case self.TransactionStatuses.CANCELLED:
-                print("Error: Transaction has already been cancelled.")
+                raise self.OperationError(
+                    "Error: Transaction has already been cancelled.")
 
     # Getter, setter for type.
     def get_type(self):
@@ -121,12 +127,13 @@ class Transaction(hasUUID):
 
     # Override default functions
     def __str__(self):
-        return ("ID_number=" + str(self.get_ID()) +
-                ", type=" + self.__type.value +
-                ", amount=" + str(self.__amount) +
-                ", description=\"" + self.__description + "\"" +
-                ", status=" + self.__status.value
-                )
+        # return ("ID_number=" + str(self.get_ID()) +
+        #        ", type=" + self.__type.value +
+        #        ", amount=" + str(self.__amount) +
+        #        ", description=\"" + self.__description + "\"" +
+        #        ", status=" + self.__status.value
+        #        )
+        return (f"{self.get_status().value} {self.get_type().value.lower()} of ${self.get_amount()} for: \"{self.get_description()}\"")
 
     def __repr__(self):
         return ("ID_number=" + str(self.get_ID()) +
@@ -135,3 +142,8 @@ class Transaction(hasUUID):
                 ", description=\"" + self.__description + "\"" +
                 ", status=" + self.__status.value
                 )
+
+    class OperationError(Exception):
+
+        def __init__(self, message="This operation cannot be performed"):
+            super().__init__(message)
