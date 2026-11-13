@@ -6,29 +6,30 @@ from fluid import Fluid
 from Pipe import Pipe
 import time
 
-## Simulation setup ##
+## Simulation Setup ##
 
 TICK_RATE = 20  # In cycles/s.
-TIMESCALE = 5
+TIMESCALE = 5  # 5x real speed.
 
 ## Physical Setup ##
 
-water = Fluid(1000, 0.001)
+water = Fluid(1000, 0.001)  # Density and viscosity of water.
 
+# Create two points diagonally positioned.
 top_point = Point([0, 0, 1])
 bottom_point = Point([0, 1, 0])
 
+# A reservoir at each point.
 top_reservoir = Reservoir(top_point, 1, water)
 bottom_reservoir = Reservoir(bottom_point, 0.5, water)
 
 # Concrete pipe betwixt the two points, starts filled with water.
 the_pipe = Pipe(0.05, water, [top_point, bottom_point], 0.0003)
 
-# Fill with 5m of water.
+# Fill bottom reservoir with 5m of water, or 4m above bottom of top reservoir.
+# Because of this, water should flow from the bottom reservoir to the top.
 bottom_reservoir.fluid_height = 5
-bottom_reservoir.on_update(0)  # Update so changes take effect.
 top_reservoir.fluid_height = 0
-top_reservoir.on_update(0)  # Update so changes take effect.
 
 ## Running ##
 
@@ -36,8 +37,7 @@ prev_time = time.time()
 initial_time = time.time()
 step_count = 0
 
-
-print("\n\n\n\n\n\n\n\n\n\n\n")
+print("\n\n\n\n\n\n\n\n\n\n\n")  # Clear output.
 for i in range(1, 1000):
 
     print("\x1b[7F")

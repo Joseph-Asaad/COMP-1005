@@ -3,7 +3,7 @@ import math
 
 
 @pytest.fixture
-def example_pipe():
+def fixture_1():
     from Point import Point
     from Pipe import Pipe
     from fluid import Fluid
